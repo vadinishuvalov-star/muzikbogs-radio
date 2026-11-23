@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#07050e" />
+  <meta name="description" content="МЮЗИКБОГС — интернет-радиостанция. Музыка богов: миксы, лекции, пластинки, рецензии, интервью и обзоры фестивалей. Эфир 24/7." />
+  <title>МЮЗИКБОГС — Музыка богов. Эфир 24/7</title>
+  <link rel="icon" type="image/svg+xml" href="assets/muzikbogs-wordmark.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Перейти к содержимому</a>
+
+  <!-- Плёночная текстура -->
+  <div class="film-grain" aria-hidden="true"></div>
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <!-- Шапка -->
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="МЮЗИКБОГС — на главную">
+        <img src="assets/muzikbogs-wordmark.svg" alt="МЮЗИКБОГС" class="brand-logo" />
+        <span class="brand-sub">МУЗЫКА БОГОВ · 24/7</span>
+      </a>
+
+      <nav class="main-nav" id="main-nav" aria-label="Основная навигация">
+        <a href="#air">Эфир</a>
+        <a href="#schedule">Программа</a>
+        <a href="#content">Контент</a>
+        <a href="#about">О станции</a>
+        <a href="#contact">Контакты</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="listen-btn" data-play-toggle aria-label="Слушать эфир">
+          <span class="listen-icon" aria-hidden="true"></span>
+          <span class="listen-label">СЛУШАТЬ</span>
+        </button>
+        <button class="menu-btn" id="menu-btn" aria-label="Открыть меню" aria-expanded="false" aria-controls="main-nav">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- HERO -->
+    <section class="hero" id="air">
+      <div class="hero-glow hero-glow--pink" aria-hidden="true"></div>
+      <div class="hero-glow hero-glow--cyan" aria-hidden="true"></div>
+      <div class="wall" aria-hidden="true"></div>
+
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="dot-live"></span> ПРЯМОЙ ЭФИР · БЕРЛИН / ИНТЕРНЕТ</div>
+          <h1 class="hero-title">
+            <img src="assets/muzikbogs-wordmark.svg" alt="МЮЗИКБОГС" class="hero-logo" />
+          </h1>
+          <p class="hero-tagline">МУЗЫКА <span>БОГОВ</span><br />для тех, кто слушает внимательно</p>
+          <p class="hero-desc">Неон, винил и хороший шум. Авторские миксы, разговоры о музыке и всё, что между ними — круглосуточно.</p>
+          <div class="hero-actions">
+            <button class="btn btn--primary" data-play-toggle>
+              <span class="play-symbol" aria-hidden="true">▶</span>
+              <span class="btn-label">ВКЛЮЧИТЬ ЭФИР</span>
+            </button>
+            <a class="btn btn--ghost" href="#content">СМОТРЕТЬ КОНТЕНТ <span aria-hidden="true">↘</span></a>
+          </div>
+          <div class="hero-meta">
+            <div><strong>24/7</strong><span>в эфире</span></div>
+            <div><strong>10</strong><span>рубрик</span></div>
+            <div><strong>HQ</strong><span>звук</span></div>
+          </div>
+        </div>
+
+        <!-- Live-карточка -->
+        <aside class="live-card" aria-label="Сейчас в эфире">
+          <div class="live-card-top">
+            <span class="live-badge"><span class="pulse"></span> LIVE</span>
+            <span class="live-clock" id="live-clock">00:00:00</span>
+          </div>
+          <div class="live-art" aria-hidden="true">
+            <div class="vinyl"><div class="vinyl-label">МБ</div></div>
+            <div class="eq" id="hero-eq">
+              <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+            </div>
+          </div>
+          <div class="live-card-body">
+            <span class="live-kicker">СЕЙЧАС ИГРАЕТ</span>
+            <h2 class="now-title" id="now-title">Тихий неон</h2>
+            <p class="now-artist" id="now-artist">МЮЗИКБОГС · Ночной микс</p>
+            <div class="progress" aria-hidden="true"><span id="progress-fill"></span></div>
+            <div class="progress-meta"><span id="now-time">00:00</span><span>LIVE · 128 KBPS</span></div>
+            <p class="up-next">ДАЛЕЕ <span>Лекторий · 11:00</span></p>
+            <button class="card-play" data-play-toggle aria-label="Play / pause">
+              <span class="card-play-icon" aria-hidden="true">▶</span>
+              <span class="card-play-text">СЛУШАТЬ ЭФИР</span>
+            </button>
+          </div>
+        </aside>
+      </div>
+
+      <a class="scroll-hint" href="#schedule" aria-label="Листать ниже"><span></span> ЛИСТАЙ</a>
+    </section>
+
+    <!-- Расписание -->
+    <section class="section schedule-section" id="schedule">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="section-index">01 / ЭФИР</span>
+            <h2 class="section-title">ПРОГРАММА <span>ДНЯ</span></h2>
+          </div>
+          <p class="section-lead">Живой эфир, премьеры рубрик и повторы любимых выпусков. Выберите день — и мы покажем, что звучит в студии.</p>
+        </div>
+
+        <div class="schedule-tabs reveal" role="tablist" aria-label="Дни недели">
+          <button class="tab is-active" role="tab" aria-selected="true" data-day="weekday">ПОНЕДЕЛЬ — ПЯТНИЦА</button>
+          <button class="tab" role="tab" aria-selected="false" data-day="weekend">СУББОТА — ВОСКРЕСЕНЬЕ</button>
+        </div>
+
+        <div class="schedule-list" id="schedule-list" role="tabpanel"><!-- JS --></div>
+        <p class="timezone-note">Время указано по Москве (GMT+3) · обновляется в момент эфира</p>
+      </div>
+    </section>
+
+    <!-- Триада эфира: сейчас / далее / недавно -->
+    <section class="section now-section" aria-labelledby="now-heading">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="section-index">01А / В ЭФИРЕ</span>
+            <h2 class="section-title" id="now-heading">ЧТО <span>ЗВУЧИТ</span></h2>
+          </div>
+          <p class="section-lead">Слушатель всегда должен знать: что играет сейчас, что будет дальше и что он пропустил. Поэтому мы показываем все три.</p>
+        </div>
+        <div class="now-grid">
+          <div class="now-panel now-panel--live reveal">
+            <span class="now-panel-kicker"><span class="pulse"></span> СЕЙЧАС В ЭФИРЕ</span>
+            <h3 id="triad-title">Тихий неон</h3>
+            <p id="triad-artist">МЮЗИКБОГС · Ночной микс</p>
+            <div class="now-panel-bar"><span id="triad-progress"></span></div>
+            <div class="now-panel-foot"><span id="triad-time">00:00 / LIVE</span><button data-play-toggle>СЛУШАТЬ →</button></div>
+          </div>
+          <div class="now-panel reveal">
+            <span class="now-panel-kicker">ДАЛЕЕ В ПРОГРАММЕ</span>
+            <h3>Лекторий</h3>
+            <p>Образовательная лекция или мастер-класс · 11:00</p>
+            <ul class="mini-list">
+              <li><span>14:00</span> Энциклопедия · 5 пластинок</li>
+              <li><span>18:00</span> Топ-10 любимых треков</li>
+              <li><span>21:00</span> Ночной микс</li>
+            </ul>
+          </div>
+          <div class="now-panel reveal">
+            <span class="now-panel-kicker">НЕДАВНО ЗВУЧАЛО</span>
+            <ul class="track-list">
+              <li><span class="track-time">21:42</span><span><strong>Космос downstream</strong><small>Артём Ветров</small></span></li>
+              <li><span class="track-time">21:36</span><span><strong>Неоновый дождь</strong><small>Лена Мороз</small></span></li>
+              <li><span class="track-time">21:29</span><span><strong>Berlin, 4 a.m.</strong><small>Кирилл Дунь</small></span></li>
+              <li><span class="track-time">21:22</span><span><strong>Стеклянный город</strong><small>МЮЗИКБОГС</small></span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Контент -->
+    <section class="section content-section" id="content">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="section-index">02 / БИБЛИОТЕКА</span>
+            <h2 class="section-title">10 ПОВОДОВ <span>СЛУШАТЬ</span></h2>
+          </div>
+          <p class="section-lead">Наш контент — не просто фон. Это десять дверей в мир звука: от виниловой энциклопедии до репортажей с фестивалей.</p>
+        </div>
+
+        <div class="filters reveal" role="group" aria-label="Фильтр контента">
+          <button class="filter is-active" data-filter="all">ВСЁ <span>10</span></button>
+          <button class="filter" data-filter="audio">АУДИО <span>5</span></button>
+          <button class="filter" data-filter="text">ТЕКСТЫ <span>5</span></button>
+          <label class="search-box">
+            <span aria-hidden="true">⌕</span>
+            <input type="search" id="content-search" placeholder="Поиск по рубрикам" aria-label="Поиск по рубрикам" />
+          </label>
+        </div>
+
+        <div class="cards-grid" id="cards-grid"><!-- JS --></div>
+      </div>
+    </section>
+
+    <!-- О станции -->
+    <section class="section about-section" id="about">
+      <div class="about-beam" aria-hidden="true"></div>
+      <div class="container about-inner reveal">
+        <span class="section-index">03 / МАНИФЕСТ</span>
+        <p class="about-quote">«Мы не играем музыку.<br />Мы <em>пропускаем её через себя</em><br />и отдаём вам — в эфир».</p>
+        <div class="about-bottom">
+          <p>МЮЗИКБОГС — независимая радиостанция для тех, кто верит: музыка может быть божественной. Мы собираем редкие пластинки, разбираем культовые фильмы, говорим с теми, кто создаёт звук, и делимся находками каждую неделю.</p>
+          <div class="about-stats">
+            <div><strong>10</strong><span>авторских рубрик</span></div>
+            <div><strong>1</strong><span>сигнал, который не выключается</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Подписка -->
+    <section class="section subscribe-section" id="contact">
+      <div class="container subscribe-inner reveal">
+        <div>
+          <span class="section-index">04 / СИГНАЛ</span>
+          <h2 class="section-title">НЕ ПРОПУСТИ <span>ЭФИР</span></h2>
+          <p class="section-lead">Раз в неделю — свежие выпуски, плейлисты и приглашения в студию. Без шума.</p>
+        </div>
+        <form class="subscribe-form" id="subscribe-form" novalidate>
+          <label for="email">ВАША ПОЧТА</label>
+          <div class="form-row">
+            <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required />
+            <button type="submit" class="btn btn--primary">ПОДПИСАТЬСЯ <span aria-hidden="true">→</span></button>
+          </div>
+          <p class="form-note" id="form-note" role="status">Нажимая кнопку, вы соглашаетесь получать нашу радиорассылку.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Подвал -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="assets/muzikbogs-wordmark.svg" alt="МЮЗИКБОГС" class="footer-logo" />
+        <p>Музыка богов. Круглосуточно.</p>
+      </div>
+      <div class="footer-col">
+        <h3>ЭФИР</h3>
+        <a href="#air">Прямой эфир</a>
+        <a href="#schedule">Программа</a>
+        <a href="#content">Библиотека</a>
+      </div>
+      <div class="footer-col">
+        <h3>СТАНЦИЯ</h3>
+        <a href="#about">О нас</a>
+        <a href="#contact">Подписка</a>
+        <a href="mailto:lazar.vinogradsky@mail.ru">Контакты</a>
+      </div>
+      <div class="footer-col">
+        <h3>СВЯЗЬ</h3>
+        <a href="mailto:lazar.vinogradsky@mail.ru">lazar.vinogradsky@mail.ru</a>
+        <span class="footer-live"><span class="pulse"></span> ON AIR 24/7</span>
+      </div>
+    </div>
+    <div class="container footer-bottom"><span>© 2026 МЮЗИКБОГС</span><span>СДЕЛАНО СО ЗВУКОМ</span></div>
+  </footer>
+
+  <!-- Закреплённый мини-плеер -->
+  <div class="mini-player" id="mini-player" aria-label="Мини-плеер">
+    <div class="container mini-inner">
+      <button class="mini-play" data-play-toggle aria-label="Воспроизвести / пауза"><span aria-hidden="true">▶</span></button>
+      <div class="mini-info">
+        <strong id="mini-title">Тихий неон</strong>
+        <span id="mini-artist">МЮЗИКБОГС · Ночной микс</span>
+      </div>
+      <div class="mini-eq" id="mini-eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <button class="mini-vol" id="mute-btn" aria-label="Выключить звук"><span aria-hidden="true">◖))</span></button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
