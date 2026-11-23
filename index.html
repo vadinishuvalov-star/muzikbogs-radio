@@ -102,6 +102,7 @@
               <span class="card-play-icon" aria-hidden="true">▶</span>
               <span class="card-play-text" data-i18n="play.card">СЛУШАТЬ ЭФИР</span>
             </button>
+            <p class="stream-status" id="stream-status" role="status" data-i18n="stream.idle">ПОТОК ГОТОВ · НАЖМИТЕ «СЛУШАТЬ»</p>
           </div>
         </aside>
       </div>
@@ -293,9 +294,12 @@
         <span id="mini-artist">МЮЗИКБОГС · Ночной микс</span>
       </div>
       <div class="mini-eq" id="mini-eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <input type="range" class="mini-volume" id="volume" min="0" max="1" step="0.05" value="0.7" data-i18n-aria="a11y.volume" aria-label="Громкость" />
       <button class="mini-vol" id="mute-btn" data-i18n-aria="a11y.mute" aria-label="Выключить звук"><span aria-hidden="true">◖))</span></button>
     </div>
   </div>
+
+  <audio id="stream-audio" preload="none"></audio>
 
   <script src="script.js"></script>
 </body>

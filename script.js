@@ -14,6 +14,12 @@
       'a11y.play': 'Воспроизвести / пауза',
       'a11y.mute': 'Выключить звук',
       'a11y.unmute': 'Включить звук',
+      'a11y.volume': 'Громкость',
+      'stream.idle': 'ПОТОК ГОТОВ · НАЖМИТЕ «СЛУШАТЬ»',
+      'stream.connecting': 'ПОДКЛЮЧЕНИЕ К ПОТОКУ…',
+      'stream.buffering': 'БУФЕРИЗАЦИЯ…',
+      'stream.live': 'ПРЯМОЙ ЭФИР · SOMAFM SECRET AGENT (ДЕМО)',
+      'stream.error': 'НЕ УДАЛОСЬ ПОДКЛЮЧИТЬСЯ · ПОВТОРИТЕ',
       'a11y.themeLight': 'Включить светлую тему',
       'a11y.themeDark': 'Включить тёмную тему',
       'header.sub': 'МУЗЫКА БОГОВ · 24/7',
@@ -75,6 +81,12 @@
       'a11y.play': 'Play / pause',
       'a11y.mute': 'Mute',
       'a11y.unmute': 'Unmute',
+      'a11y.volume': 'Volume',
+      'stream.idle': 'STREAM READY · PRESS “LISTEN”',
+      'stream.connecting': 'CONNECTING TO STREAM…',
+      'stream.buffering': 'BUFFERING…',
+      'stream.live': 'LIVE · SOMAFM SECRET AGENT (DEMO)',
+      'stream.error': 'CONNECTION FAILED · TRY AGAIN',
       'a11y.themeLight': 'Switch to light theme',
       'a11y.themeDark': 'Switch to dark theme',
       'header.sub': 'MUSIC OF THE GODS · 24/7',
@@ -193,9 +205,10 @@
   let activeFilter = 'all';
   let isPlaying = false;
   let trackIndex = 0;
-  let progress = 0;
-  let tick = 0;
+  let listenSeconds = 0;
   let timer = null;
+  let metaTimer = null;
+  let lastSongKey = '';
 
   const t = key => i18n[lang][key] || i18n.ru[key] || key;
 
@@ -269,6 +282,8 @@
     renderCards();
     renderSchedule(currentDay);
     setTrack(trackIndex, false);
+    if (lastSongRaw) displaySong(lastSongRaw.title, `${lastSongRaw.artist} · МЮЗИКБОГС · ${t('live.live')}`);
+    setStatus(isPlaying ? 'live' : (streamState === 'error' ? 'error' : 'idle'));
     updatePlayerLabels();
     applyTheme();
     const note = document.getElementById('form-note');
@@ -296,7 +311,12 @@
     applyTheme();
   });
 
-  /* ---------- Плеер ---------- */
+  /* ---------- Плеер (реальный аудиопоток) ---------- */
+  const STREAM_URL = 'https://ice1.somafm.com/secretagent-128-mp3';
+  const META_URL = 'https://somafm.com/songs/secretagent.json';
+  const audio = document.getElementById('stream-audio');
+  audio.volume = 0.7;
+
   const progressFill = document.getElementById('progress-fill');
   const nowTime = document.getElementById('now-time');
   const nowTitle = document.getElementById('now-title');
@@ -307,37 +327,61 @@
   const triadArtist = document.getElementById('triad-artist');
   const triadProgress = document.getElementById('triad-progress');
   const triadTime = document.getElementById('triad-time');
+  const statusEl = document.getElementById('stream-status');
+  let streamState = 'idle';
+  let lastSong = null;
+  let lastSongRaw = null;
+
+  function setStatus(state) {
+    streamState = state;
+    statusEl.textContent = t(`stream.${state}`);
+    statusEl.classList.toggle('is-live', state === 'live');
+    statusEl.classList.toggle('is-error', state === 'error');
+  }
+
+  function displaySong(title, artist) {
+    nowTitle.textContent = title;
+    nowArtist.textContent = artist;
+    miniTitle.textContent = title;
+    miniArtist.textContent = artist;
+    triadTitle.textContent = title;
+    triadArtist.textContent = artist;
+    lastSong = { title, artist };
+  }
 
   function setTrack(index, reset = true) {
     trackIndex = index % tracks.length;
     const data = tracks[trackIndex][lang];
-    nowTitle.textContent = data.title;
-    nowArtist.textContent = data.artist;
-    miniTitle.textContent = data.title;
-    miniArtist.textContent = data.artist;
-    triadTitle.textContent = data.title;
-    triadArtist.textContent = data.artist;
-    if (reset) progress = 0;
+    if (!lastSong) displaySong(data.title, data.artist);
+    if (reset) listenSeconds = 0;
     updateProgress();
   }
 
   function updateProgress() {
-    progressFill.style.width = `${progress}%`;
-    const sec = Math.floor((progress / 100) * 240);
-    const formatted = `${String(Math.floor(sec / 60)).padStart(2, '0')}:${String(sec % 60).padStart(2, '0')}`;
+    const formatted = `${String(Math.floor(listenSeconds / 60)).padStart(2, '0')}:${String(listenSeconds % 60).padStart(2, '0')}`;
     nowTime.textContent = formatted;
-    triadProgress.style.width = `${progress}%`;
     triadTime.textContent = `${formatted} / LIVE`;
+    progressFill.style.width = isPlaying ? '100%' : '0%';
+    triadProgress.style.width = isPlaying ? '100%' : '0%';
   }
 
   function startTimer() {
-    timer = setInterval(() => {
-      progress += 0.45;
-      tick++;
-      if (progress >= 100) { setTrack(trackIndex + 1); return; }
-      if (tick % 26 === 0) setTrack(trackIndex + 1);
-      updateProgress();
-    }, 1000);
+    timer = setInterval(() => { listenSeconds++; updateProgress(); }, 1000);
+  }
+
+  async function fetchMeta() {
+    try {
+      const response = await fetch(META_URL, { cache: 'no-store' });
+      if (!response.ok) return;
+      const data = await response.json();
+      const song = data.songs && data.songs[0];
+      if (!song) return;
+      const key = `${song.title}|${song.artist}`;
+      if (key === lastSongKey) return;
+      lastSongKey = key;
+      lastSongRaw = { title: song.title, artist: song.artist };
+      displaySong(song.title, `${song.artist} · МЮЗИКБОГС · ${t('live.live')}`);
+    } catch (_) { /* офлайн — остаётся последнее известное название */ }
   }
 
   function updatePlayerLabels() {
@@ -346,16 +390,45 @@
     document.querySelectorAll('.card-play-text').forEach(el => { el.textContent = isPlaying ? t('play.pause') : t('play.card'); });
     document.querySelector('.listen-label').textContent = isPlaying ? t('play.pause') : t('play.listen');
     document.querySelectorAll('[data-play-toggle]').forEach(btn => btn.setAttribute('aria-pressed', String(isPlaying)));
+    updateProgress();
   }
 
-  function setPlaying(value) {
-    isPlaying = value;
-    updatePlayerLabels();
-    if (isPlaying) { if (!timer) startTimer(); }
-    else { clearInterval(timer); timer = null; }
+  async function setPlaying(value) {
+    if (value === isPlaying && audio.src) return;
+    if (!value) {
+      audio.pause();
+      isPlaying = false;
+      clearInterval(timer); timer = null;
+      clearInterval(metaTimer); metaTimer = null;
+      setStatus('idle');
+      updatePlayerLabels();
+      return;
+    }
+    setStatus('connecting');
+    try {
+      if (!audio.src) audio.src = STREAM_URL;
+      await audio.play();
+      isPlaying = true;
+      listenSeconds = 0;
+      setStatus('live');
+      updatePlayerLabels();
+      if (!timer) startTimer();
+      await fetchMeta();
+      clearInterval(metaTimer);
+      metaTimer = setInterval(fetchMeta, 20000);
+    } catch (_) {
+      isPlaying = false;
+      audio.removeAttribute('src');
+      audio.load();
+      setStatus('error');
+      updatePlayerLabels();
+    }
   }
 
   document.querySelectorAll('[data-play-toggle]').forEach(btn => btn.addEventListener('click', () => setPlaying(!isPlaying)));
+  audio.addEventListener('waiting', () => { if (isPlaying) setStatus('buffering'); });
+  audio.addEventListener('playing', () => { if (isPlaying) setStatus('live'); });
+  audio.addEventListener('error', () => { if (isPlaying) { setPlaying(false); setStatus('error'); } });
 
   const clock = document.getElementById('live-clock');
   function updateClock() {
@@ -372,10 +445,18 @@
   }
   window.addEventListener('scroll', onScroll, { passive: true });
 
-  document.getElementById('mute-btn').addEventListener('click', (e) => {
-    const muted = e.currentTarget.classList.toggle('is-muted');
-    e.currentTarget.querySelector('span').textContent = muted ? '◖×' : '◖))';
-    e.currentTarget.setAttribute('aria-label', muted ? t('a11y.unmute') : t('a11y.mute'));
+  const muteBtn = document.getElementById('mute-btn');
+  muteBtn.addEventListener('click', () => {
+    const muted = !audio.muted;
+    audio.muted = muted;
+    muteBtn.querySelector('span').textContent = muted ? '◖×' : '◖))';
+    muteBtn.setAttribute('aria-label', muted ? t('a11y.unmute') : t('a11y.mute'));
+  });
+  document.getElementById('volume').addEventListener('input', (e) => {
+    audio.volume = parseFloat(e.target.value);
+    audio.muted = false;
+    muteBtn.querySelector('span').textContent = '◖))';
+    muteBtn.setAttribute('aria-label', t('a11y.mute'));
   });
 
   /* ---------- Табы, фильтры, поиск ---------- */

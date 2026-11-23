@@ -379,6 +379,9 @@ html[lang="ru"] .lang-ru, html[lang="en"] .lang-en { color: var(--pink); font-we
   transition: background 0.3s, box-shadow 0.3s;
 }
 .card-play:hover { background: rgba(255,46,166,0.14); box-shadow: 0 0 26px rgba(255,46,166,.3); }
+.stream-status { margin: 12px 0 0; text-align: center; font-family: "Oswald", "Arial Narrow", sans-serif; font-size: 10px; letter-spacing: .12em; color: var(--muted); }
+.stream-status.is-live { color: var(--cyan); }
+.stream-status.is-error { color: #ff6b8a; }
 
 .scroll-hint {
   position: absolute; bottom: 26px; left: 50%; transform: translateX(-50%);
@@ -618,6 +621,7 @@ html[lang="ru"] .lang-ru, html[lang="en"] .lang-en { color: var(--pink); font-we
 .mini-info strong { font-family: "Oswald", "Arial Narrow", sans-serif; font-size: 16px; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .mini-info span { font-size: 11px; color: var(--muted); }
 .mini-eq { margin-left: auto; display: flex; align-items: flex-end; gap: 3px; height: 28px; width: 120px; }
+.mini-volume { width: 88px; height: 3px; accent-color: var(--pink); cursor: pointer; }
 .mini-vol { background: none; border: 0; color: var(--cyan); font-size: 18px; padding: 6px; }
 
 /* --- Светлая тема --- */
@@ -752,7 +756,7 @@ html[data-theme="light"] .scroll-hint { color: var(--muted); }
   .sr-tag { display: none; }
   .footer-inner { grid-template-columns: 1fr; }
   .footer-bottom { flex-direction: column; gap: 8px; }
-  .mini-eq { display: none; }
+  .mini-eq, .mini-volume { display: none; }
   .switch-btn--lang { padding: 0 6px; font-size: 10px; }
   .card-art { height: 78px; }
 }
