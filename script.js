@@ -765,20 +765,74 @@
     menuBtn.setAttribute('aria-expanded', 'false');
   }));
 
-  /* ---------- Плавный скролл по якорям ---------- */
-  function smoothScrollTo(targetY, duration = 750) {
-    const startY = window.scrollY;
-    const distance = targetY - startY;
-    if (Math.abs(distance) < 2) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      window.scrollTo({ top: targetY, behavior: 'instant' });
+  /* ---------- Плавная инерционная прокрутка ---------- */
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const finePointer = window.matchMedia('(pointer: fine)').matches;
+  const inertia = {
+    enabled: finePointer && !reduceMotion,
+    target: window.scrollY,
+    raf: 0,
+    ranOnce: false
+  };
+  const maxScroll = () => Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+
+  function inertiaStep() {
+    if (!inertia.enabled) return;
+    inertia.ranOnce = true;
+    const diff = inertia.target - window.scrollY;
+    if (Math.abs(diff) < 1.5) {
+      window.scrollTo({ top: inertia.target, behavior: 'instant' });
+      inertia.raf = 0;
       return;
     }
+    window.scrollTo({ top: window.scrollY + diff * 0.16, behavior: 'instant' });
+    inertia.raf = requestAnimationFrame(inertiaStep);
+  }
+  function startInertia() {
+    if (!inertia.enabled) return;
+    if (!inertia.raf) inertia.raf = requestAnimationFrame(inertiaStep);
+    setTimeout(() => {
+      if (!inertia.ranOnce) {
+        inertia.enabled = false;
+        window.scrollTo({ top: inertia.target, behavior: 'instant' });
+      }
+    }, 300);
+  }
+
+  window.addEventListener('wheel', (e) => {
+    if (!inertia.enabled || e.ctrlKey) return;
+    let delta = e.deltaY;
+    if (e.deltaMode === 1) delta *= 16;
+    else if (e.deltaMode === 2) delta *= window.innerHeight;
+    e.preventDefault();
+    inertia.target = Math.min(maxScroll(), Math.max(0, inertia.target + delta));
+    startInertia();
+  }, { passive: false });
+
+  window.addEventListener('scroll', () => {
+    if (!inertia.raf) inertia.target = window.scrollY;
+  }, { passive: true });
+  window.addEventListener('resize', () => { inertia.target = Math.min(inertia.target, maxScroll()); });
+
+  function smoothScrollTo(targetY, duration = 1100) {
+    targetY = Math.min(maxScroll(), Math.max(0, targetY));
+    if (reduceMotion || Math.abs(targetY - window.scrollY) < 2) {
+      window.scrollTo({ top: targetY, behavior: 'instant' });
+      inertia.target = targetY;
+      return;
+    }
+    if (inertia.enabled) {
+      inertia.target = targetY;
+      startInertia();
+      return;
+    }
+    const startY = window.scrollY;
+    const distance = targetY - startY;
     const startTime = performance.now();
-    const ease = t => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+    const ease = t => (t < 0.5 ? 16 * Math.pow(t, 5) : 1 - Math.pow(-2 * t + 2, 5) / 2);
     const fallback = setTimeout(() => {
-      if (Math.abs(window.scrollY - targetY) > 2) window.scrollTo({ top: targetY, behavior: 'smooth' });
-    }, duration + 120);
+      if (Math.abs(window.scrollY - targetY) > 2) window.scrollTo({ top: targetY, behavior: 'instant' });
+    }, duration + 150);
     (function animate(now) {
       const p = Math.min(1, (now - startTime) / duration);
       window.scrollTo({ top: startY + distance * ease(p), behavior: 'instant' });
