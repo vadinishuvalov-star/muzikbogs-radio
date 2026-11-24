@@ -36,7 +36,10 @@
       'header.sub': 'МУЗЫКА БОГОВ · 24/7',
       'nav.air': 'Эфир', 'nav.schedule': 'Программа', 'nav.video': 'Видео',
       'nav.content': 'Контент', 'nav.community': 'Сообщество', 'nav.about': 'О станции', 'nav.contact': 'Контакты',
-      'hero.eyebrow': 'ПРЯМОЙ ЭФИР · БЕРЛИН / ИНТЕРНЕТ',
+      'hero.eyebrow': 'НЕЗАВИСИМОЕ МУЗЫКАЛЬНОЕ РАДИО · ЭФИР 24/7',
+      'hero.curated': 'КУРАТОРСКИЙ ЭФИР ДЛЯ ЦЕНИТЕЛЕЙ МУЗЫКИ',
+      'hero.tag1': 'ВИНИЛ', 'hero.tag2': 'АВТОРСКИЕ МИКСЫ',
+      'hero.tag3': 'РЕДКИЕ НАХОДКИ', 'hero.tag4': 'БЕЗ РЕКЛАМЫ',
       'hero.tagline': 'МУЗЫКА <span>БОГОВ</span><br />для тех, кто слушает внимательно',
       'hero.desc': 'Неон, винил и хороший шум. Авторские миксы, разговоры о музыке и всё, что между ними — круглосуточно.',
       'hero.browse': 'СМОТРЕТЬ КОНТЕНТ',
@@ -44,6 +47,7 @@
       'play.listen': 'СЛУШАТЬ', 'play.start': 'ВКЛЮЧИТЬ ЭФИР',
       'play.pause': 'ПАУЗА', 'play.card': 'СЛУШАТЬ ЭФИР',
       'live.live': 'LIVE', 'live.now': 'СЕЙЧАС ИГРАЕТ', 'live.bitrate': 'LIVE · 128 KBPS',
+      'live.spec': '33⅓ RPM · STEREO · CURATED',
       'live.next': 'ДАЛЕЕ', 'live.nextValue': 'Лекторий · 11:00',
       'scroll.hint': 'ЛИСТАЙ',
       'sched.index': '01 / ЭФИР', 'sched.title': 'ПРОГРАММА <span>ДНЯ</span>',
@@ -137,7 +141,10 @@
       'header.sub': 'MUSIC OF THE GODS · 24/7',
       'nav.air': 'Live', 'nav.schedule': 'Schedule', 'nav.video': 'Video',
       'nav.content': 'Content', 'nav.community': 'Community', 'nav.about': 'About', 'nav.contact': 'Contact',
-      'hero.eyebrow': 'LIVE STREAM · BERLIN / ONLINE',
+      'hero.eyebrow': 'INDEPENDENT MUSIC RADIO · ON AIR 24/7',
+      'hero.curated': 'A CURATED STREAM FOR MUSIC LOVERS',
+      'hero.tag1': 'VINYL', 'hero.tag2': 'ORIGINAL MIXES',
+      'hero.tag3': 'RARE FINDS', 'hero.tag4': 'NO ADS',
       'hero.tagline': 'MUSIC <span>OF THE GODS</span><br />for those who really listen',
       'hero.desc': 'Neon, vinyl and good noise. Original mixes, conversations about music and everything in between — around the clock.',
       'hero.browse': 'EXPLORE CONTENT',
@@ -145,6 +152,7 @@
       'play.listen': 'LISTEN', 'play.start': 'START STREAM',
       'play.pause': 'PAUSE', 'play.card': 'LISTEN LIVE',
       'live.live': 'LIVE', 'live.now': 'NOW PLAYING', 'live.bitrate': 'LIVE · 128 KBPS',
+      'live.spec': '33⅓ RPM · STEREO · CURATED',
       'live.next': 'UP NEXT', 'live.nextValue': 'Lecture Hall · 11:00',
       'scroll.hint': 'SCROLL',
       'sched.index': '01 / ON AIR', 'sched.title': 'TODAY’S <span>SCHEDULE</span>',
@@ -399,6 +407,8 @@
     btn.textContent = theme === 'dark' ? '☾' : '☀';
     btn.setAttribute('aria-label', theme === 'dark' ? t('a11y.themeLight') : t('a11y.themeDark'));
     document.querySelector('meta[name="theme-color"]').setAttribute('content', theme === 'dark' ? '#07050e' : '#f6f1fa');
+    const mark = theme === 'light' ? 'assets/muzikbogs-wordmark-light.svg' : 'assets/muzikbogs-wordmark.svg';
+    document.querySelectorAll('.brand-logo, .footer-logo').forEach(img => { img.src = mark; });
   }
 
   document.getElementById('lang-btn').addEventListener('click', () => {
