@@ -15,11 +15,18 @@
       'a11y.mute': 'Выключить звук',
       'a11y.unmute': 'Включить звук',
       'a11y.volume': 'Громкость',
-      'stream.idle': 'ПОТОК ГОТОВ · НАЖМИТЕ «СЛУШАТЬ»',
-      'stream.connecting': 'ПОДКЛЮЧЕНИЕ К ПОТОКУ…',
+      'a11y.eq': 'Открыть эквалайзер',
+      'a11y.eqClose': 'Закрыть эквалайзер',
+      'stream.idle': 'ОРИГИНАЛЬНЫЙ ДЕМО-СИГНАЛ · НАЖМИТЕ «СЛУШАТЬ»',
+      'stream.connecting': 'ПОДГОТОВКА ЗВУКА…',
       'stream.buffering': 'БУФЕРИЗАЦИЯ…',
-      'stream.live': 'ПРЯМОЙ ЭФИР · SOMAFM SECRET AGENT (ДЕМО)',
-      'stream.error': 'НЕ УДАЛОСЬ ПОДКЛЮЧИТЬСЯ · ПОВТОРИТЕ',
+      'stream.live': 'ЭФИР · ОРИГИНАЛЬНЫЙ ДЕМО-СИГНАЛ',
+      'stream.error': 'ЗВУК НЕДОСТУПЕН · ПОВТОРИТЕ',
+      'eq.open': 'ОТКРЫТЬ ЭКВАЛАЙЗЕР · 10 ПОЛОС',
+      'eq.title': 'ЭКВАЛАЙЗЕР',
+      'eq.preset': 'ПРЕСЕТ',
+      'eq.custom': 'CUSTOM', 'eq.flat': 'FLAT', 'eq.rock': 'РОК', 'eq.jazz': 'ДЖАЗ',
+      'eq.vocal': 'ВОКАЛ', 'eq.night': 'НОЧЬ', 'eq.bass': 'БАС',
       'a11y.themeLight': 'Включить светлую тему',
       'a11y.themeDark': 'Включить тёмную тему',
       'header.sub': 'МУЗЫКА БОГОВ · 24/7',
@@ -48,7 +55,7 @@
       'now.recent': 'НЕДАВНО ЗВУЧАЛО',
       'video.index': '01Б / ВИДЕО', 'video.title': 'ВИД <span>СТУДИИ</span>',
       'video.lead': 'Неон, ночной город и звук, от которого хочется ехать дальше. Саундтрек нашего эфира — в одном кадре.',
-      'video.caption': 'Neon Lights · Dark Synthwave — royalty-free визуальный ряд для настроения МЮЗИКБОГС.',
+      'video.caption': 'Neon Lights · Dark Synthwave — <a href="https://www.youtube.com/@WoolScapes" target="_blank" rel="noopener noreferrer">WoolScapes</a>, royalty-free. Видео подключено без автозапуска.',
       'video.cta': 'СМОТРЕТЬ НА YOUTUBE',
       'content.index': '02 / БИБЛИОТЕКА', 'content.title': '10 ПОВОДОВ <span>СЛУШАТЬ</span>',
       'content.lead': 'Наш контент — не просто фон. Это десять дверей в мир звука: от виниловой энциклопедии до репортажей с фестивалей.',
@@ -62,14 +69,17 @@
       'sub.index': '04 / СИГНАЛ', 'sub.title': 'НЕ ПРОПУСТИ <span>ЭФИР</span>',
       'sub.lead': 'Раз в неделю — свежие выпуски, плейлисты и приглашения в студию. Без шума.',
       'sub.label': 'ВАША ПОЧТА', 'sub.button': 'ПОДПИСАТЬСЯ',
-      'sub.note': 'Нажимая кнопку, вы соглашаетесь получать нашу радиорассылку.',
+      'sub.note': 'Подписка на рассылку МЮЗИКБОГС. Без спама.',
+      'sub.consent': 'Я согласен(на) на <a href="privacy.html" target="_blank" rel="noopener noreferrer">обработку персональных данных</a> и получение рассылки',
       'sub.error': 'Проверьте адрес электронной почты.',
+      'sub.consentError': 'Подтвердите согласие на обработку персональных данных.',
       'sub.success': 'Сигнал принят. Спасибо — вы в рассылке МЮЗИКБОГС.',
       'footer.tagline': 'Музыка богов. Круглосуточно.',
       'footer.air': 'ЭФИР', 'footer.liveLink': 'Прямой эфир', 'footer.schedule': 'Программа',
       'footer.library': 'Библиотека', 'footer.station': 'СТАНЦИЯ', 'footer.about': 'О нас',
       'footer.subscribe': 'Подписка', 'footer.contacts': 'Контакты', 'footer.contact': 'СВЯЗЬ',
-      'footer.made': 'СДЕЛАНО СО ЗВУКОМ'
+      'footer.made': 'СДЕЛАНО СО ЗВУКОМ',
+      'footer.privacy': 'ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ'
     },
     en: {
       'meta.title': 'MUZIKBOGS — Music of the Gods. On air 24/7',
@@ -82,11 +92,18 @@
       'a11y.mute': 'Mute',
       'a11y.unmute': 'Unmute',
       'a11y.volume': 'Volume',
-      'stream.idle': 'STREAM READY · PRESS “LISTEN”',
-      'stream.connecting': 'CONNECTING TO STREAM…',
+      'a11y.eq': 'Open equalizer',
+      'a11y.eqClose': 'Close equalizer',
+      'stream.idle': 'ORIGINAL DEMO SIGNAL · PRESS “LISTEN”',
+      'stream.connecting': 'PREPARING AUDIO…',
       'stream.buffering': 'BUFFERING…',
-      'stream.live': 'LIVE · SOMAFM SECRET AGENT (DEMO)',
-      'stream.error': 'CONNECTION FAILED · TRY AGAIN',
+      'stream.live': 'ON AIR · ORIGINAL DEMO SIGNAL',
+      'stream.error': 'AUDIO UNAVAILABLE · TRY AGAIN',
+      'eq.open': 'OPEN EQUALIZER · 10 BANDS',
+      'eq.title': 'EQUALIZER',
+      'eq.preset': 'PRESET',
+      'eq.custom': 'CUSTOM', 'eq.flat': 'FLAT', 'eq.rock': 'ROCK', 'eq.jazz': 'JAZZ',
+      'eq.vocal': 'VOCAL', 'eq.night': 'NIGHT', 'eq.bass': 'BASS',
       'a11y.themeLight': 'Switch to light theme',
       'a11y.themeDark': 'Switch to dark theme',
       'header.sub': 'MUSIC OF THE GODS · 24/7',
@@ -115,7 +132,7 @@
       'now.recent': 'RECENTLY PLAYED',
       'video.index': '01B / VIDEO', 'video.title': 'THE <span>STUDIO VIBE</span>',
       'video.lead': 'Neon, night city and a sound that makes you keep driving. The soundtrack of our stream — in one frame.',
-      'video.caption': 'Neon Lights · Dark Synthwave — royalty-free visuals for the mood of МЮЗИКБОГС.',
+      'video.caption': 'Neon Lights · Dark Synthwave — <a href="https://www.youtube.com/@WoolScapes" target="_blank" rel="noopener noreferrer">WoolScapes</a>, royalty-free. Video does not autoplay.',
       'video.cta': 'WATCH ON YOUTUBE',
       'content.index': '02 / LIBRARY', 'content.title': '10 REASONS <span>TO LISTEN</span>',
       'content.lead': 'Our content is not just background. Ten doors into the world of sound: from a vinyl encyclopedia to festival reports.',
@@ -129,14 +146,17 @@
       'sub.index': '04 / SIGNAL', 'sub.title': 'DON’T MISS <span>THE AIR</span>',
       'sub.lead': 'Once a week: fresh episodes, playlists and studio invitations. No noise.',
       'sub.label': 'YOUR EMAIL', 'sub.button': 'SUBSCRIBE',
-      'sub.note': 'By subscribing you agree to receive the МЮЗИКБОГС newsletter.',
+      'sub.note': 'Subscribe to the МЮЗИКБОГС newsletter. No spam.',
+      'sub.consent': 'I agree to the <a href="privacy.html" target="_blank" rel="noopener noreferrer">processing of personal data</a> and to receiving the newsletter',
       'sub.error': 'Please check your email address.',
+      'sub.consentError': 'Please confirm consent to personal data processing.',
       'sub.success': 'Signal received. Thanks — you’re on the МЮЗИКБОГС list.',
       'footer.tagline': 'Music of the gods. Around the clock.',
       'footer.air': 'ON AIR', 'footer.liveLink': 'Live stream', 'footer.schedule': 'Schedule',
       'footer.library': 'Library', 'footer.station': 'STATION', 'footer.about': 'About',
       'footer.subscribe': 'Subscribe', 'footer.contacts': 'Contacts', 'footer.contact': 'GET IN TOUCH',
-      'footer.made': 'MADE WITH SOUND'
+      'footer.made': 'MADE WITH SOUND',
+      'footer.privacy': 'PRIVACY POLICY'
     }
   };
 
@@ -282,7 +302,8 @@
     renderCards();
     renderSchedule(currentDay);
     setTrack(trackIndex, false);
-    if (lastSongRaw) displaySong(lastSongRaw.title, `${lastSongRaw.artist} · МЮЗИКБОГС · ${t('live.live')}`);
+    if (ctx && !eqPanel.hidden) { const prev = eqPreset.value; buildPresetOptions(); eqPreset.value = prev || 'flat'; }
+    setMuted(muted);
     setStatus(isPlaying ? 'live' : (streamState === 'error' ? 'error' : 'idle'));
     updatePlayerLabels();
     applyTheme();
@@ -311,11 +332,12 @@
     applyTheme();
   });
 
-  /* ---------- Плеер (реальный аудиопоток) ---------- */
-  const STREAM_URL = 'https://ice1.somafm.com/secretagent-128-mp3';
-  const META_URL = 'https://somafm.com/songs/secretagent.json';
+  /* ---------- Плеер: оригинальный демо-сигнал + Web Audio EQ ---------- */
+  const AUDIO_SRC = 'assets/muzikbogs-air.wav';
   const audio = document.getElementById('stream-audio');
-  audio.volume = 0.7;
+  audio.src = AUDIO_SRC;
+  audio.loop = true;
+  audio.volume = 1;
 
   const progressFill = document.getElementById('progress-fill');
   const nowTime = document.getElementById('now-time');
@@ -328,9 +350,11 @@
   const triadProgress = document.getElementById('triad-progress');
   const triadTime = document.getElementById('triad-time');
   const statusEl = document.getElementById('stream-status');
+  const volumeMini = document.getElementById('volume');
+  const volumeHero = document.getElementById('hero-volume');
+  const muteBtn = document.getElementById('mute-btn');
   let streamState = 'idle';
-  let lastSong = null;
-  let lastSongRaw = null;
+  let muted = false;
 
   function setStatus(state) {
     streamState = state;
@@ -346,43 +370,27 @@
     miniArtist.textContent = artist;
     triadTitle.textContent = title;
     triadArtist.textContent = artist;
-    lastSong = { title, artist };
   }
 
   function setTrack(index, reset = true) {
     trackIndex = index % tracks.length;
     const data = tracks[trackIndex][lang];
-    if (!lastSong) displaySong(data.title, data.artist);
+    displaySong(data.title, data.artist);
     if (reset) listenSeconds = 0;
     updateProgress();
   }
 
+  const fmt = s => `${String(Math.floor((s || 0) / 60)).padStart(2, '0')}:${String(Math.floor((s || 0) % 60)).padStart(2, '0')}`;
   function updateProgress() {
-    const formatted = `${String(Math.floor(listenSeconds / 60)).padStart(2, '0')}:${String(listenSeconds % 60).padStart(2, '0')}`;
-    nowTime.textContent = formatted;
-    triadTime.textContent = `${formatted} / LIVE`;
-    progressFill.style.width = isPlaying ? '100%' : '0%';
-    triadProgress.style.width = isPlaying ? '100%' : '0%';
+    const duration = audio.duration || 40;
+    const ratio = audio.currentTime ? Math.min(100, (audio.currentTime / duration) * 100) : 0;
+    nowTime.textContent = fmt(audio.currentTime);
+    triadTime.textContent = `${fmt(audio.currentTime)} / ${fmt(duration)}`;
+    progressFill.style.width = isPlaying ? `${ratio}%` : '0%';
+    triadProgress.style.width = isPlaying ? `${ratio}%` : '0%';
   }
-
-  function startTimer() {
-    timer = setInterval(() => { listenSeconds++; updateProgress(); }, 1000);
-  }
-
-  async function fetchMeta() {
-    try {
-      const response = await fetch(META_URL, { cache: 'no-store' });
-      if (!response.ok) return;
-      const data = await response.json();
-      const song = data.songs && data.songs[0];
-      if (!song) return;
-      const key = `${song.title}|${song.artist}`;
-      if (key === lastSongKey) return;
-      lastSongKey = key;
-      lastSongRaw = { title: song.title, artist: song.artist };
-      displaySong(song.title, `${song.artist} · МЮЗИКБОГС · ${t('live.live')}`);
-    } catch (_) { /* офлайн — остаётся последнее известное название */ }
-  }
+  audio.addEventListener('timeupdate', updateProgress);
+  audio.addEventListener('loadedmetadata', updateProgress);
 
   function updatePlayerLabels() {
     document.body.classList.toggle('is-playing', isPlaying);
@@ -393,41 +401,183 @@
     updateProgress();
   }
 
+  /* --- Web Audio: 10-полосный EQ + спектроанализатор --- */
+  const EQ_FREQS = [31, 62, 125, 250, 500, 1000, 2000, 4000, 8000, 16000];
+  const PRESETS = {
+    flat:  [0,0,0,0,0,0,0,0,0,0],
+    rock:  [5,3,0,-2,-1,1,3,4,4,3],
+    jazz:  [3,2,1,0,0,1,2,3,3,2],
+    vocal: [-2,-1,0,2,4,5,4,2,1,0],
+    night: [4,3,2,1,0,-1,-2,-2,-1,0],
+    bass:  [7,6,4,2,0,-1,-2,-2,-2,-2]
+  };
+  let ctx = null, gainNode = null, analyser = null, filters = [];
+  let rafId = null, freqData = null;
+
+  function initAudioGraph() {
+    if (ctx) return;
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (!AudioCtx) return;
+    ctx = new AudioCtx();
+    const source = ctx.createMediaElementSource(audio);
+    gainNode = ctx.createGain();
+    gainNode.gain.value = muted ? 0 : parseFloat(volumeMini.value);
+    filters = EQ_FREQS.map((f, i) => {
+      const b = ctx.createBiquadFilter();
+      b.type = i === 0 ? 'lowshelf' : (i === EQ_FREQS.length - 1 ? 'highshelf' : 'peaking');
+      b.frequency.value = f;
+      b.Q.value = 1.1;
+      b.gain.value = 0;
+      return b;
+    });
+    analyser = ctx.createAnalyser();
+    analyser.fftSize = 2048;
+    analyser.smoothingTimeConstant = 0.8;
+    freqData = new Uint8Array(analyser.frequencyBinCount);
+    let node = source;
+    node.connect(gainNode); node = gainNode;
+    filters.forEach(f => { node.connect(f); node = f; });
+    node.connect(analyser);
+    analyser.connect(ctx.destination);
+    buildEqUI();
+  }
+
+  function setVolume(value) {
+    const v = parseFloat(value);
+    volumeMini.value = volumeHero.value = String(v);
+    if (gainNode) gainNode.gain.setTargetAtTime(muted ? 0 : v, ctx.currentTime, 0.02);
+    audio.volume = 1;
+  }
+
+  function setMuted(value) {
+    muted = value;
+    if (gainNode) gainNode.gain.setTargetAtTime(muted ? 0 : parseFloat(volumeMini.value), ctx.currentTime, 0.02);
+    muteBtn.querySelector('span').textContent = muted ? '◖×' : '◖))';
+    muteBtn.setAttribute('aria-label', muted ? t('a11y.unmute') : t('a11y.mute'));
+  }
+
+  const eqPanel = document.getElementById('eq-panel');
+  const eqCanvas = document.getElementById('eq-canvas');
+  const eqBands = document.getElementById('eq-bands');
+  const eqPreset = document.getElementById('eq-preset');
+  const eqReadout = document.getElementById('eq-readout');
+
+  function buildPresetOptions() {
+    eqPreset.innerHTML = `<option value="custom">${t('eq.custom')}</option>` +
+      Object.keys(PRESETS).map(k => `<option value="${k}">${t(`eq.${k}`)}</option>`).join('');
+  }
+
+  function setBand(index, value) {
+    const db = parseFloat(value);
+    if (filters[index]) filters[index].gain.setTargetAtTime(db, ctx.currentTime, 0.02);
+    const label = eqBands.querySelector(`[data-db="${index}"]`);
+    if (label) label.textContent = `${db > 0 ? '+' : ''}${db}`;
+    eqReadout.textContent = `${EQ_FREQS[index] >= 1000 ? (EQ_FREQS[index] / 1000) + 'k' : EQ_FREQS[index]}Hz · ${db > 0 ? '+' : ''}${db} dB`;
+  }
+
+  function buildEqUI() {
+    eqBands.innerHTML = EQ_FREQS.map((f, i) => `
+      <div class="eq-band">
+        <span class="eq-band-db" data-db="${i}">0</span>
+        <input type="range" class="eq-slider" min="-12" max="12" step="1" value="0"
+               data-band="${i}" aria-label="${f >= 1000 ? f / 1000 + 'k' : f} Hz" />
+        <span class="eq-band-hz">${f >= 1000 ? (f / 1000) + 'k' : f}</span>
+      </div>`).join('');
+    eqBands.querySelectorAll('.eq-slider').forEach(slider => {
+      slider.addEventListener('input', e => {
+        eqPreset.value = 'custom';
+        setBand(parseInt(e.target.dataset.band, 10), e.target.value);
+      });
+    });
+  }
+
+  function applyPreset(name) {
+    const values = PRESETS[name];
+    if (!values) return;
+    values.forEach((db, i) => {
+      const slider = eqBands.querySelector(`[data-band="${i}"]`);
+      if (slider) { slider.value = String(db); setBand(i, db); }
+    });
+    eqPreset.value = name;
+    eqReadout.textContent = `${t('eq.preset')}: ${t(`eq.${name}`)}`;
+  }
+
+  function drawSpectrum() {
+    rafId = requestAnimationFrame(drawSpectrum);
+    if (eqPanel.hidden || !analyser) return;
+    const g = eqCanvas.getContext('2d');
+    const w = eqCanvas.width, h = eqCanvas.height;
+    g.clearRect(0, 0, w, h);
+    g.fillStyle = 'rgba(6,4,12,.86)';
+    g.fillRect(0, 0, w, h);
+    g.strokeStyle = 'rgba(255,255,255,.06)';
+    g.lineWidth = 1;
+    for (let i = 1; i < 5; i++) { const y = (h / 5) * i; g.beginPath(); g.moveTo(0, y); g.lineTo(w, y); g.stroke(); }
+    analyser.getByteFrequencyData(freqData);
+    const bars = 64;
+    const bw = w / bars;
+    const grad = g.createLinearGradient(0, h, 0, 0);
+    grad.addColorStop(0, '#ff2ea6');
+    grad.addColorStop(0.55, '#ff7ad9');
+    grad.addColorStop(1, '#5ceaff');
+    for (let i = 0; i < bars; i++) {
+      const bin = Math.floor(Math.pow((i + 1) / bars, 1.7) * (freqData.length * 0.65));
+      const val = freqData[bin] / 255;
+      const bh = Math.max(2, val * (h - 16));
+      const x = i * bw + 1;
+      g.fillStyle = grad;
+      g.fillRect(x, h - bh, bw - 2, bh);
+      g.fillStyle = 'rgba(255,255,255,.35)';
+      g.fillRect(x, h - bh, bw - 2, 2);
+    }
+  }
+
+  function openEq() {
+    initAudioGraph();
+    const previous = eqPreset.value;
+    buildPresetOptions();
+    if (previous && PRESETS[previous]) applyPreset(previous);
+    else if (previous === 'custom') eqPreset.value = 'custom';
+    else applyPreset('flat');
+    eqPanel.hidden = false;
+    if (!rafId) drawSpectrum();
+    document.getElementById('eq-close').focus();
+  }
+  function closeEq() { eqPanel.hidden = true; document.getElementById('eq-open').focus(); }
+  document.getElementById('eq-open').addEventListener('click', openEq);
+  document.getElementById('eq-open-mini').addEventListener('click', openEq);
+  document.getElementById('eq-close').addEventListener('click', closeEq);
+  document.getElementById('eq-reset').addEventListener('click', () => applyPreset('flat'));
+  eqPreset.addEventListener('change', e => applyPreset(e.target.value));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !eqPanel.hidden) closeEq(); });
+
   async function setPlaying(value) {
-    if (value === isPlaying && audio.src) return;
+    if (value === isPlaying) return;
     if (!value) {
       audio.pause();
+      audio.currentTime = 0;
       isPlaying = false;
+      if (ctx && ctx.state === 'running') ctx.suspend();
       clearInterval(timer); timer = null;
-      clearInterval(metaTimer); metaTimer = null;
       setStatus('idle');
       updatePlayerLabels();
       return;
     }
-    setStatus('connecting');
     try {
-      if (!audio.src) audio.src = STREAM_URL;
+      initAudioGraph();
+      if (ctx && ctx.state === 'suspended') await ctx.resume();
       await audio.play();
       isPlaying = true;
-      listenSeconds = 0;
       setStatus('live');
       updatePlayerLabels();
-      if (!timer) startTimer();
-      await fetchMeta();
-      clearInterval(metaTimer);
-      metaTimer = setInterval(fetchMeta, 20000);
     } catch (_) {
       isPlaying = false;
-      audio.removeAttribute('src');
-      audio.load();
       setStatus('error');
       updatePlayerLabels();
     }
   }
 
   document.querySelectorAll('[data-play-toggle]').forEach(btn => btn.addEventListener('click', () => setPlaying(!isPlaying)));
-  audio.addEventListener('waiting', () => { if (isPlaying) setStatus('buffering'); });
-  audio.addEventListener('playing', () => { if (isPlaying) setStatus('live'); });
   audio.addEventListener('error', () => { if (isPlaying) { setPlaying(false); setStatus('error'); } });
 
   const clock = document.getElementById('live-clock');
@@ -445,19 +595,8 @@
   }
   window.addEventListener('scroll', onScroll, { passive: true });
 
-  const muteBtn = document.getElementById('mute-btn');
-  muteBtn.addEventListener('click', () => {
-    const muted = !audio.muted;
-    audio.muted = muted;
-    muteBtn.querySelector('span').textContent = muted ? '◖×' : '◖))';
-    muteBtn.setAttribute('aria-label', muted ? t('a11y.unmute') : t('a11y.mute'));
-  });
-  document.getElementById('volume').addEventListener('input', (e) => {
-    audio.volume = parseFloat(e.target.value);
-    audio.muted = false;
-    muteBtn.querySelector('span').textContent = '◖))';
-    muteBtn.setAttribute('aria-label', t('a11y.mute'));
-  });
+  muteBtn.addEventListener('click', () => setMuted(!muted));
+  [volumeMini, volumeHero].forEach(slider => slider.addEventListener('input', e => { setMuted(false); setVolume(e.target.value); }));
 
   /* ---------- Табы, фильтры, поиск ---------- */
   document.querySelectorAll('.tab').forEach(tab => {
@@ -505,9 +644,11 @@
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const email = document.getElementById('email').value.trim();
+    const consent = document.getElementById('consent').checked;
     const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     note.classList.remove('is-error', 'is-success');
     if (!valid) { note.textContent = t('sub.error'); note.classList.add('is-error'); return; }
+    if (!consent) { note.textContent = t('sub.consentError'); note.classList.add('is-error'); return; }
     note.textContent = t('sub.success');
     note.classList.add('is-success');
     form.reset();

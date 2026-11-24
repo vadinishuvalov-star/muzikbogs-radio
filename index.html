@@ -98,11 +98,17 @@
             <div class="progress" aria-hidden="true"><span id="progress-fill"></span></div>
             <div class="progress-meta"><span id="now-time">00:00</span><span data-i18n="live.bitrate">LIVE · 128 KBPS</span></div>
             <p class="up-next"><span data-i18n="live.next">ДАЛЕЕ</span> <span data-i18n="live.nextValue">Лекторий · 11:00</span></p>
+            <div class="volume-row">
+              <span aria-hidden="true">◖))</span>
+              <input type="range" class="volume-range" id="hero-volume" min="0" max="1" step="0.01" value="0.7" data-i18n-aria="a11y.volume" aria-label="Громкость" />
+              <span aria-hidden="true">◖)))</span>
+            </div>
             <button class="card-play" data-play-toggle data-i18n-aria="a11y.play" aria-label="Play / pause">
               <span class="card-play-icon" aria-hidden="true">▶</span>
               <span class="card-play-text" data-i18n="play.card">СЛУШАТЬ ЭФИР</span>
             </button>
             <p class="stream-status" id="stream-status" role="status" data-i18n="stream.idle">ПОТОК ГОТОВ · НАЖМИТЕ «СЛУШАТЬ»</p>
+            <button class="eq-open" id="eq-open" data-i18n="eq.open">ОТКРЫТЬ ЭКВАЛАЙЗЕР · 10 ПОЛОС</button>
           </div>
         </aside>
       </div>
@@ -188,7 +194,7 @@
           <span class="section-index" data-i18n="video.index">01Б / ВИДЕО</span>
           <h2 class="section-title" data-i18n-html="true" data-i18n="video.title">ВИД <span>СТУДИИ</span></h2>
           <p class="section-lead" data-i18n="video.lead">Неон, ночной город и звук, от которого хочется ехать дальше. Саундтрек нашего эфира — в одном кадре.</p>
-          <p class="video-caption" data-i18n="video.caption">Neon Lights · Dark Synthwave — royalty-free визуальный ряд для настроения МЮЗИКБОГС.</p>
+          <p class="video-caption" data-i18n-html="true" data-i18n="video.caption">Neon Lights · Dark Synthwave — <a href="https://www.youtube.com/@WoolScapes" target="_blank" rel="noopener noreferrer">WoolScapes</a>, royalty-free. Видео подключено без автозапуска.</p>
           <a class="btn btn--ghost" href="https://www.youtube.com/watch?v=11jEgN6SjG0" target="_blank" rel="noopener noreferrer">
             <span data-i18n="video.cta">СМОТРЕТЬ НА YOUTUBE</span> <span aria-hidden="true">↗</span>
           </a>
@@ -251,7 +257,11 @@
             <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required />
             <button type="submit" class="btn btn--primary"><span data-i18n="sub.button">ПОДПИСАТЬСЯ</span> <span aria-hidden="true">→</span></button>
           </div>
-          <p class="form-note" id="form-note" role="status" data-i18n="sub.note">Нажимая кнопку, вы соглашаетесь получать нашу радиорассылку.</p>
+          <label class="consent">
+            <input type="checkbox" id="consent" required />
+            <span data-i18n-html="true" data-i18n="sub.consent">Я согласен(на) на <a href="privacy.html" target="_blank" rel="noopener noreferrer">обработку персональных данных</a> и получение рассылки</span>
+          </label>
+          <p class="form-note" id="form-note" role="status" data-i18n="sub.note">Подписка на рассылку МЮЗИКБОГС. Без спама.</p>
         </form>
       </div>
     </section>
@@ -282,7 +292,7 @@
         <span class="footer-live"><span class="pulse"></span> ON AIR 24/7</span>
       </div>
     </div>
-    <div class="container footer-bottom"><span>© 2026 МЮЗИКБОГС</span><span data-i18n="footer.made">СДЕЛАНО СО ЗВУКОМ</span></div>
+    <div class="container footer-bottom"><span>© 2026 МЮЗИКБОГС</span><a href="privacy.html" data-i18n="footer.privacy">ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ</a><span data-i18n="footer.made">СДЕЛАНО СО ЗВУКОМ</span></div>
   </footer>
 
   <!-- Мини-плеер -->
@@ -294,12 +304,31 @@
         <span id="mini-artist">МЮЗИКБОГС · Ночной микс</span>
       </div>
       <div class="mini-eq" id="mini-eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-      <input type="range" class="mini-volume" id="volume" min="0" max="1" step="0.05" value="0.7" data-i18n-aria="a11y.volume" aria-label="Громкость" />
+      <input type="range" class="mini-volume" id="volume" min="0" max="1" step="0.01" value="0.7" data-i18n-aria="a11y.volume" aria-label="Громкость" />
+      <button class="mini-eq-btn" id="eq-open-mini" data-i18n-aria="a11y.eq" aria-label="Открыть эквалайзер">EQ</button>
       <button class="mini-vol" id="mute-btn" data-i18n-aria="a11y.mute" aria-label="Выключить звук"><span aria-hidden="true">◖))</span></button>
     </div>
   </div>
 
-  <audio id="stream-audio" preload="none"></audio>
+  <!-- Эквалайзер -->
+  <div class="eq-panel" id="eq-panel" role="dialog" aria-label="Эквалайзер" hidden>
+    <div class="eq-head">
+      <div>
+        <span class="eq-kicker">МЮЗИКБОГС · AUDIO ENGINE</span>
+        <h3 data-i18n="eq.title">ЭКВАЛАЙЗЕР</h3>
+      </div>
+      <button id="eq-close" aria-label="Закрыть эквалайзер" data-i18n-aria="a11y.eqClose">×</button>
+    </div>
+    <canvas id="eq-canvas" width="900" height="150" aria-hidden="true"></canvas>
+    <div class="eq-bands" id="eq-bands"></div>
+    <div class="eq-foot">
+      <label>ПРЕСЕТ <select id="eq-preset"></select></label>
+      <button id="eq-reset">FLAT / 0 dB</button>
+      <span id="eq-readout">—</span>
+    </div>
+  </div>
+
+  <audio id="stream-audio" preload="none" loop></audio>
 
   <script src="script.js"></script>
 </body>
