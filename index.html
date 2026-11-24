@@ -33,6 +33,7 @@
         <a href="#schedule" data-i18n="nav.schedule">Программа</a>
         <a href="#video" data-i18n="nav.video">Видео</a>
         <a href="#content" data-i18n="nav.content">Контент</a>
+        <a href="#community" data-i18n="nav.community">Сообщество</a>
         <a href="#about" data-i18n="nav.about">О станции</a>
         <a href="#contact" data-i18n="nav.contact">Контакты</a>
       </nav>
@@ -249,12 +250,59 @@
       <div class="container about-inner reveal">
         <span class="section-index" data-i18n="about.index">03 / МАНИФЕСТ</span>
         <p class="about-quote" data-i18n-html="true" data-i18n="about.quote">«Мы не играем музыку.<br />Мы <em>пропускаем её через себя</em><br />и отдаём вам — в эфир».</p>
+        <div class="founder reveal">
+          <div class="founder-photo magic-surface">
+            <img src="assets/lazar.jpg" alt="Лазарь Виноградский — фаундер МЮЗИКБОГС" id="founder-photo" onerror="this.remove()" />
+            <span class="founder-monogram" id="founder-monogram" aria-hidden="true">ЛВ</span>
+          </div>
+          <div class="founder-copy">
+            <span class="section-index" data-i18n="founder.kicker">03А / ФАУНДЕР</span>
+            <h3 data-i18n="founder.name">Лазарь Виноградский</h3>
+            <p data-i18n="founder.role">Фаундер и ведущий МЮЗИКБОГС</p>
+            <p class="founder-note" data-i18n="founder.text">Собрал станцию вокруг простой идеи: музыка должна быть ближе, а эфир — живым.</p>
+          </div>
+        </div>
         <div class="about-bottom">
           <p data-i18n="about.text">МЮЗИКБОГС — независимая радиостанция для тех, кто верит: музыка может быть божественной. Мы собираем редкие пластинки, разбираем культовые фильмы, говорим с теми, кто создаёт звук, и делимся находками каждую неделю.</p>
           <div class="about-stats">
             <div><strong>10</strong><span data-i18n="about.stat1">авторских рубрик</span></div>
             <div><strong>1</strong><span data-i18n="about.stat2">сигнал, который не выключается</span></div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Сообщество -->
+    <section class="section community-section" id="community">
+      <div class="container community-inner">
+        <div class="community-copy reveal">
+          <span class="section-index" data-i18n="community.index">05 / СООБЩЕСТВО</span>
+          <h2 class="section-title" data-i18n-html="true" data-i18n="community.title">СВОИ <span>ЛЮДИ</span></h2>
+          <p class="section-lead" data-i18n="community.lead">Отдельный чат для тех, кто не хочет слушать в одиночку. Обмениваемся находками, спорим о звуке и просто общаемся.</p>
+          <ul class="community-list">
+            <li data-i18n="community.item1">Свежие миксы и плейлисты раньше эфира</li>
+            <li data-i18n="community.item2">Виниловые находки и разборы пластинок</li>
+            <li data-i18n="community.item3">Анонсы фестивалей и live-сессий</li>
+            <li data-i18n="community.item4">Общение с ведущими и другими слушателями</li>
+          </ul>
+          <a class="btn btn--primary community-cta magic-surface" id="tg-join" href="https://t.me/muzikbogs" target="_blank" rel="noopener noreferrer">
+            <span aria-hidden="true">✈</span><span data-i18n="community.cta">ПРИСОЕДИНИТЬСЯ В TELEGRAM</span><span aria-hidden="true">↗</span>
+          </a>
+          <p class="community-note" data-i18n="community.note">Ссылка на чат — демонстрационная. Замените её на приглашение в своё сообщество.</p>
+        </div>
+
+        <div class="community-card magic-surface reveal">
+          <div class="tg-orbit" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div class="tg-icon" aria-hidden="true">✈</div>
+          <span class="tg-kicker">TELEGRAM · COMMUNITY</span>
+          <h3 data-i18n="community.cardTitle">@MUZIKBOGS</h3>
+          <p data-i18n="community.cardText">Место, где музыка не заканчивается вместе с эфиром.</p>
+          <div class="tg-chats" aria-hidden="true">
+            <span class="tg-bubble" data-i18n="community.chat1">Слышали вчерашний микс? 🔥</span>
+            <span class="tg-bubble tg-bubble--pink" data-i18n="community.chat2">Нашёл редкую пластинку</span>
+            <span class="tg-bubble" data-i18n="community.chat3">Кто на фестиваль?</span>
+          </div>
+          <div class="tg-foot"><span class="pulse"></span> <span data-i18n="community.online">НА СВЯЗИ 24/7</span></div>
         </div>
       </div>
     </section>
@@ -295,6 +343,7 @@
         <a href="#air" data-i18n="footer.liveLink">Прямой эфир</a>
         <a href="#schedule" data-i18n="footer.schedule">Программа</a>
         <a href="#content" data-i18n="footer.library">Библиотека</a>
+        <a href="#community" data-i18n="footer.community">Сообщество</a>
       </div>
       <div class="footer-col">
         <h3 data-i18n="footer.station">СТАНЦИЯ</h3>

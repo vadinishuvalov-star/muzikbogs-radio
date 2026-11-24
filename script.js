@@ -35,7 +35,7 @@
       'a11y.themeDark': 'Включить тёмную тему',
       'header.sub': 'МУЗЫКА БОГОВ · 24/7',
       'nav.air': 'Эфир', 'nav.schedule': 'Программа', 'nav.video': 'Видео',
-      'nav.content': 'Контент', 'nav.about': 'О станции', 'nav.contact': 'Контакты',
+      'nav.content': 'Контент', 'nav.community': 'Сообщество', 'nav.about': 'О станции', 'nav.contact': 'Контакты',
       'hero.eyebrow': 'ПРЯМОЙ ЭФИР · БЕРЛИН / ИНТЕРНЕТ',
       'hero.tagline': 'МУЗЫКА <span>БОГОВ</span><br />для тех, кто слушает внимательно',
       'hero.desc': 'Неон, винил и хороший шум. Авторские миксы, разговоры о музыке и всё, что между ними — круглосуточно.',
@@ -71,6 +71,10 @@
       'about.quote': '«Мы не играем музыку.<br />Мы <em>пропускаем её через себя</em><br />и отдаём вам — в эфир».',
       'about.text': 'МЮЗИКБОГС — независимая радиостанция для тех, кто верит: музыка может быть божественной. Мы собираем редкие пластинки, разбираем культовые фильмы, говорим с теми, кто создаёт звук, и делимся находками каждую неделю.',
       'about.stat1': 'авторских рубрик', 'about.stat2': 'сигнал, который не выключается',
+      'founder.kicker': '03А / ФАУНДЕР',
+      'founder.name': 'Лазарь Виноградский',
+      'founder.role': 'Фаундер и ведущий МЮЗИКБОГС',
+      'founder.text': 'Собрал станцию вокруг простой идеи: музыка должна быть ближе, а эфир — живым.',
       'sub.index': '04 / СИГНАЛ', 'sub.title': 'НЕ ПРОПУСТИ <span>ЭФИР</span>',
       'sub.lead': 'Раз в неделю — свежие выпуски, плейлисты и приглашения в студию. Без шума.',
       'sub.label': 'ВАША ПОЧТА', 'sub.button': 'ПОДПИСАТЬСЯ',
@@ -79,9 +83,24 @@
       'sub.error': 'Проверьте адрес электронной почты.',
       'sub.consentError': 'Подтвердите согласие на обработку персональных данных.',
       'sub.success': 'Сигнал принят. Спасибо — вы в рассылке МЮЗИКБОГС.',
+      'community.index': '05 / СООБЩЕСТВО',
+      'community.title': 'СВОИ <span>ЛЮДИ</span>',
+      'community.lead': 'Отдельный чат для тех, кто не хочет слушать в одиночку. Обмениваемся находками, спорим о звуке и просто общаемся.',
+      'community.item1': 'Свежие миксы и плейлисты раньше эфира',
+      'community.item2': 'Виниловые находки и разборы пластинок',
+      'community.item3': 'Анонсы фестивалей и live-сессий',
+      'community.item4': 'Общение с ведущими и другими слушателями',
+      'community.cta': 'ПРИСОЕДИНИТЬСЯ В TELEGRAM',
+      'community.note': 'Ссылка на чат — демонстрационная. Замените её на приглашение в своё сообщество.',
+      'community.cardTitle': '@MUZIKBOGS',
+      'community.cardText': 'Место, где музыка не заканчивается вместе с эфиром.',
+      'community.chat1': 'Слышали вчерашний микс?',
+      'community.chat2': 'Нашёл редкую пластинку',
+      'community.chat3': 'Кто на фестиваль?',
+      'community.online': 'НА СВЯЗИ 24/7',
       'footer.tagline': 'Музыка богов. Круглосуточно.',
       'footer.air': 'ЭФИР', 'footer.liveLink': 'Прямой эфир', 'footer.schedule': 'Программа',
-      'footer.library': 'Библиотека', 'footer.station': 'СТАНЦИЯ', 'footer.about': 'О нас',
+      'footer.library': 'Библиотека', 'footer.community': 'Сообщество', 'footer.station': 'СТАНЦИЯ', 'footer.about': 'О нас',
       'footer.subscribe': 'Подписка', 'footer.contacts': 'Контакты', 'footer.contact': 'СВЯЗЬ',
       'footer.made': 'СДЕЛАНО СО ЗВУКОМ',
       'footer.privacy': 'ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ'
@@ -117,7 +136,7 @@
       'a11y.themeDark': 'Switch to dark theme',
       'header.sub': 'MUSIC OF THE GODS · 24/7',
       'nav.air': 'Live', 'nav.schedule': 'Schedule', 'nav.video': 'Video',
-      'nav.content': 'Content', 'nav.about': 'About', 'nav.contact': 'Contact',
+      'nav.content': 'Content', 'nav.community': 'Community', 'nav.about': 'About', 'nav.contact': 'Contact',
       'hero.eyebrow': 'LIVE STREAM · BERLIN / ONLINE',
       'hero.tagline': 'MUSIC <span>OF THE GODS</span><br />for those who really listen',
       'hero.desc': 'Neon, vinyl and good noise. Original mixes, conversations about music and everything in between — around the clock.',
@@ -153,6 +172,10 @@
       'about.quote': '«We don’t play music.<br />We <em>run it through ourselves</em><br />and give it back — on air».',
       'about.text': 'МЮЗИКБОГС is an independent radio station for those who believe music can be divine. We hunt rare records, dissect cult films, talk to the people who make sound, and share our findings every week.',
       'about.stat1': 'author columns', 'about.stat2': 'one signal that never stops',
+      'founder.kicker': '03A / FOUNDER',
+      'founder.name': 'Lazar Vinogradsky',
+      'founder.role': 'Founder and host of МЮЗИКБОГС',
+      'founder.text': 'Built the station around a simple idea: music should feel closer, and the air should stay alive.',
       'sub.index': '04 / SIGNAL', 'sub.title': 'DON’T MISS <span>THE AIR</span>',
       'sub.lead': 'Once a week: fresh episodes, playlists and studio invitations. No noise.',
       'sub.label': 'YOUR EMAIL', 'sub.button': 'SUBSCRIBE',
@@ -161,9 +184,24 @@
       'sub.error': 'Please check your email address.',
       'sub.consentError': 'Please confirm consent to personal data processing.',
       'sub.success': 'Signal received. Thanks — you’re on the МЮЗИКБОГС list.',
+      'community.index': '05 / COMMUNITY',
+      'community.title': 'YOUR <span>PEOPLE</span>',
+      'community.lead': 'A separate chat for those who don’t want to listen alone. Share finds, argue about sound and just talk.',
+      'community.item1': 'Fresh mixes and playlists before the air',
+      'community.item2': 'Vinyl finds and record breakdowns',
+      'community.item3': 'Festival and live session announcements',
+      'community.item4': 'Talk with the hosts and other listeners',
+      'community.cta': 'JOIN THE TELEGRAM CHAT',
+      'community.note': 'This chat link is a placeholder. Replace it with your community invite.',
+      'community.cardTitle': '@MUZIKBOGS',
+      'community.cardText': 'The place where music doesn’t end when the stream does.',
+      'community.chat1': 'Did you hear yesterday’s mix?',
+      'community.chat2': 'Found a rare record',
+      'community.chat3': 'Who’s going to the festival?',
+      'community.online': 'ONLINE 24/7',
       'footer.tagline': 'Music of the gods. Around the clock.',
       'footer.air': 'ON AIR', 'footer.liveLink': 'Live stream', 'footer.schedule': 'Schedule',
-      'footer.library': 'Library', 'footer.station': 'STATION', 'footer.about': 'About',
+      'footer.library': 'Library', 'footer.community': 'Community', 'footer.station': 'STATION', 'footer.about': 'About',
       'footer.subscribe': 'Subscribe', 'footer.contacts': 'Contacts', 'footer.contact': 'GET IN TOUCH',
       'footer.made': 'MADE WITH SOUND',
       'footer.privacy': 'PRIVACY POLICY'
@@ -250,7 +288,7 @@
     cardsGrid.innerHTML = content.map(item => {
       const d = item[lang];
       return `
-        <article class="card reveal" data-type="${item.type}">
+        <article class="card reveal magic-surface" data-type="${item.type}">
           <div class="card-art"><span class="card-num">${item.num}</span><span class="art-ring"></span><span class="art-line"></span></div>
           <span class="card-type">${t(item.type === 'audio' ? 'card.audio' : 'card.text')}</span>
           <span class="card-meta">${d.meta}</span>
@@ -261,6 +299,7 @@
     }).join('');
     observeReveals();
     applyFilters();
+    initMagicSurfaces();
   }
 
   function renderSchedule(day) {
@@ -275,6 +314,35 @@
           <span class="sr-tag ${row.pink ? 'sr-tag--pink' : ''}">${d.tag}</span>
         </div>`;
     }).join('');
+  }
+
+  /* ---------- Мягкий «магический» свет карточек ---------- */
+  function initMagicSurfaces() {
+    document.querySelectorAll('.magic-surface').forEach(el => {
+      if (el.querySelector('.magic-fx')) return;
+      const fx = document.createElement('span');
+      fx.className = 'magic-fx';
+      fx.setAttribute('aria-hidden', 'true');
+      el.appendChild(fx);
+      el.addEventListener('pointermove', e => {
+        const r = el.getBoundingClientRect();
+        el.style.setProperty('--mx', `${e.clientX - r.left}px`);
+        el.style.setProperty('--my', `${e.clientY - r.top}px`);
+      });
+      el.addEventListener('pointerleave', () => {
+        el.style.setProperty('--mx', '-1000px');
+        el.style.setProperty('--my', '-1000px');
+      });
+      el.addEventListener('pointerdown', e => {
+        const r = el.getBoundingClientRect();
+        fx.style.setProperty('--wx', `${e.clientX - r.left}px`);
+        fx.style.setProperty('--wy', `${e.clientY - r.top}px`);
+        fx.classList.remove('is-wave');
+        void fx.offsetWidth;
+        fx.classList.add('is-wave');
+        setTimeout(() => fx.classList.remove('is-wave'), 650);
+      });
+    });
   }
 
   /* ---------- Появление при скролле ---------- */
@@ -687,11 +755,37 @@
     menuBtn.setAttribute('aria-expanded', 'false');
   }));
 
-  /* Логотип слева всегда возвращает в начало */
-  document.querySelector('.brand').addEventListener('click', (e) => {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    history.replaceState(null, '', location.pathname + location.search + '#top');
+  /* ---------- Плавный скролл по якорям ---------- */
+  function smoothScrollTo(targetY, duration = 750) {
+    const startY = window.scrollY;
+    const distance = targetY - startY;
+    if (Math.abs(distance) < 2) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      window.scrollTo({ top: targetY, behavior: 'instant' });
+      return;
+    }
+    const startTime = performance.now();
+    const ease = t => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+    const fallback = setTimeout(() => {
+      if (Math.abs(window.scrollY - targetY) > 2) window.scrollTo({ top: targetY, behavior: 'smooth' });
+    }, duration + 120);
+    (function animate(now) {
+      const p = Math.min(1, (now - startTime) / duration);
+      window.scrollTo({ top: startY + distance * ease(p), behavior: 'instant' });
+      if (p < 1) requestAnimationFrame(animate);
+      else clearTimeout(fallback);
+    })(startTime);
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+      const id = link.getAttribute('href').slice(1);
+      const target = document.getElementById(id);
+      if (!target) return;
+      e.preventDefault();
+      const y = id === 'top' ? 0 : Math.max(0, target.getBoundingClientRect().top + window.scrollY - 84);
+      smoothScrollTo(y);
+      history.replaceState(null, '', `#${id}`);
+    });
   });
 
   const form = document.getElementById('subscribe-form');
@@ -709,8 +803,18 @@
     form.reset();
   });
 
+  /* Портрет фаундера: показываем монограмму, если файл не найден */
+  const founderImg = document.getElementById('founder-photo');
+  const founderMono = document.getElementById('founder-monogram');
+  if (founderImg && founderMono) {
+    const showPhoto = () => { founderMono.hidden = true; };
+    if (founderImg.complete && founderImg.naturalWidth) showPhoto();
+    else founderImg.addEventListener('load', showPhoto);
+  }
+
   /* ---------- Старт ---------- */
   applyI18n();
   observeReveals();
+  initMagicSurfaces();
   onScroll();
 })();

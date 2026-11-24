@@ -14,15 +14,19 @@
   let reduced = motionQuery.matches;
 
   let particles = [];
-  let buckets = [];
   let width = 0, height = 0, dpr = 1;
   let raf = 0, last = 0, visible = true;
   let gathering = false, gatherStart = 0, bursting = false;
   let buildFrame = 0;
   const pointer = { active: false, x: 0, y: 0, sx: 0, sy: 0 };
 
+  let COLORS = [];
+  let buckets = [];
   function palette() {
-    const cyan = [92, 234, 255], pink = [255, 46, 166], out = [];
+    const light = document.documentElement.dataset.theme === 'light';
+    const cyan = light ? [0, 127, 166] : [92, 234, 255];
+    const pink = light ? [201, 24, 130] : [255, 46, 166];
+    const out = [];
     for (let i = 0; i < 24; i++) {
       const t = i / 23;
       const from = t < 0.5 ? cyan : pink;
@@ -33,8 +37,11 @@
     }
     return out;
   }
-  const COLORS = palette();
-  buckets = COLORS.map(() => []);
+  function refreshPalette() {
+    COLORS = palette();
+    buckets = COLORS.map(() => []);
+  }
+  refreshPalette();
 
   function build() {
     const rect = container.getBoundingClientRect();
@@ -234,6 +241,8 @@
   });
   intersectionObserver.observe(container);
   motionQuery.addEventListener('change', e => { reduced = e.matches; queueBuild(); });
+  const themeObserver = new MutationObserver(() => { refreshPalette(); queueBuild(); });
+  themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
   build();
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(queueBuild);
