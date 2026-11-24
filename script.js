@@ -17,6 +17,10 @@
       'a11y.volume': 'Громкость',
       'a11y.eq': 'Открыть эквалайзер',
       'a11y.eqClose': 'Закрыть эквалайзер',
+      'a11y.vinyl': 'Включить эфир с пластинки',
+      'a11y.videoVolume': 'Громкость видео',
+      'a11y.videoMute': 'Выключить звук видео',
+      'a11y.videoUnmute': 'Включить звук видео',
       'stream.idle': 'ОРИГИНАЛЬНЫЙ ДЕМО-СИГНАЛ · НАЖМИТЕ «СЛУШАТЬ»',
       'stream.connecting': 'ПОДГОТОВКА ЗВУКА…',
       'stream.buffering': 'БУФЕРИЗАЦИЯ…',
@@ -57,6 +61,7 @@
       'video.lead': 'Неон, ночной город и звук, от которого хочется ехать дальше. Саундтрек нашего эфира — в одном кадре.',
       'video.caption': 'Neon Lights · Dark Synthwave — <a href="https://www.youtube.com/@WoolScapes" target="_blank" rel="noopener noreferrer">WoolScapes</a>, royalty-free. Видео подключено без автозапуска.',
       'video.cta': 'СМОТРЕТЬ НА YOUTUBE',
+      'video.volume': 'ГРОМКОСТЬ ВИДЕО',
       'content.index': '02 / БИБЛИОТЕКА', 'content.title': '10 ПОВОДОВ <span>СЛУШАТЬ</span>',
       'content.lead': 'Наш контент — не просто фон. Это десять дверей в мир звука: от виниловой энциклопедии до репортажей с фестивалей.',
       'filter.all': 'ВСЁ', 'filter.audio': 'АУДИО', 'filter.text': 'ТЕКСТЫ',
@@ -94,6 +99,10 @@
       'a11y.volume': 'Volume',
       'a11y.eq': 'Open equalizer',
       'a11y.eqClose': 'Close equalizer',
+      'a11y.vinyl': 'Play the stream from the vinyl',
+      'a11y.videoVolume': 'Video volume',
+      'a11y.videoMute': 'Mute video',
+      'a11y.videoUnmute': 'Unmute video',
       'stream.idle': 'ORIGINAL DEMO SIGNAL · PRESS “LISTEN”',
       'stream.connecting': 'PREPARING AUDIO…',
       'stream.buffering': 'BUFFERING…',
@@ -134,6 +143,7 @@
       'video.lead': 'Neon, night city and a sound that makes you keep driving. The soundtrack of our stream — in one frame.',
       'video.caption': 'Neon Lights · Dark Synthwave — <a href="https://www.youtube.com/@WoolScapes" target="_blank" rel="noopener noreferrer">WoolScapes</a>, royalty-free. Video does not autoplay.',
       'video.cta': 'WATCH ON YOUTUBE',
+      'video.volume': 'VIDEO VOLUME',
       'content.index': '02 / LIBRARY', 'content.title': '10 REASONS <span>TO LISTEN</span>',
       'content.lead': 'Our content is not just background. Ten doors into the world of sound: from a vinyl encyclopedia to festival reports.',
       'filter.all': 'ALL', 'filter.audio': 'AUDIO', 'filter.text': 'ARTICLES',
@@ -304,6 +314,7 @@
     setTrack(trackIndex, false);
     if (ctx && !eqPanel.hidden) { const prev = eqPreset.value; buildPresetOptions(); eqPreset.value = prev || 'flat'; }
     setMuted(muted);
+    if (typeof updateVideoMuteUI === 'function') updateVideoMuteUI();
     setStatus(isPlaying ? 'live' : (streamState === 'error' ? 'error' : 'idle'));
     updatePlayerLabels();
     applyTheme();
@@ -597,6 +608,43 @@
 
   muteBtn.addEventListener('click', () => setMuted(!muted));
   [volumeMini, volumeHero].forEach(slider => slider.addEventListener('input', e => { setMuted(false); setVolume(e.target.value); }));
+
+  /* ---------- Громкость видео (YouTube IFrame API) ---------- */
+  const videoFrame = document.querySelector('.video-frame iframe');
+  const videoVol = document.getElementById('video-volume');
+  const videoMuteBtn = document.getElementById('video-mute');
+  const videoVolValue = document.getElementById('video-volume-value');
+  let videoMuted = false;
+
+  function videoCommand(func, args = []) {
+    try {
+      videoFrame.contentWindow.postMessage(
+        JSON.stringify({ event: 'command', func, args }),
+        'https://www.youtube-nocookie.com'
+      );
+    } catch (_) { /* плеер ещё не готов */ }
+  }
+  function updateVideoMuteUI() {
+    videoMuteBtn.querySelector('span').textContent = videoMuted ? '◖×' : '◖))';
+    videoMuteBtn.setAttribute('aria-label', videoMuted ? t('a11y.videoUnmute') : t('a11y.videoMute'));
+  }
+  videoVol.addEventListener('input', e => {
+    const v = parseInt(e.target.value, 10);
+    videoVolValue.textContent = `${v}%`;
+    videoCommand('setVolume', [v]);
+    if (v > 0 && videoMuted) { videoMuted = false; videoCommand('unMute'); updateVideoMuteUI(); }
+  });
+  videoMuteBtn.addEventListener('click', () => {
+    videoMuted = !videoMuted;
+    videoCommand(videoMuted ? 'mute' : 'unMute');
+    updateVideoMuteUI();
+  });
+  videoFrame.addEventListener('load', () => {
+    setTimeout(() => {
+      videoCommand('setVolume', [parseInt(videoVol.value, 10)]);
+      if (videoMuted) videoCommand('mute');
+    }, 1400);
+  });
 
   /* ---------- Табы, фильтры, поиск ---------- */
   document.querySelectorAll('.tab').forEach(tab => {

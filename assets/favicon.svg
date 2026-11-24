@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="МЮЗИКБОГС">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a1040"/>
+      <stop offset="55%" stop-color="#0d0819"/>
+      <stop offset="100%" stop-color="#1d0824"/>
+    </linearGradient>
+    <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#5ceaff"/>
+      <stop offset="50%" stop-color="#ff2ea6"/>
+      <stop offset="100%" stop-color="#ff8ad8"/>
+    </linearGradient>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2.2" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect x="1" y="1" width="62" height="62" rx="13" fill="url(#bg)" stroke="url(#ring)" stroke-width="1.6"/>
+  <circle cx="32" cy="32" r="23" fill="none" stroke="#ff2ea6" stroke-opacity="0.3" stroke-width="1"/>
+  <circle cx="32" cy="32" r="18.5" fill="none" stroke="#5ceaff" stroke-opacity="0.18" stroke-width="1"/>
+  <g font-family="Arial Narrow,Arial,sans-serif" font-weight="900" font-size="27" text-anchor="middle">
+    <g filter="url(#glow)">
+      <text x="24" y="40" fill="#5ceaff" opacity="0.85">М</text>
+      <text x="41" y="40" fill="#ff2ea6" opacity="0.85">Б</text>
+    </g>
+    <text x="24" y="40" fill="#bdf8ff">М</text>
+    <text x="41" y="40" fill="#ff8ad8">Б</text>
+  </g>
+  <path d="M29 46 L29 52 L34 49 Z" fill="#ff2ea6" opacity="0.9"/>
+</svg>

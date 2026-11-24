@@ -6,7 +6,9 @@
   <meta name="theme-color" content="#07050e" />
   <meta name="description" data-i18n-attr="content" data-i18n="meta.desc" content="МЮЗИКБОГС — интернет-радиостанция. Музыка богов: миксы, лекции, пластинки, рецензии, интервью и обзоры фестивалей. Эфир 24/7." />
   <title>МЮЗИКБОГС — Музыка богов. Эфир 24/7</title>
-  <link rel="icon" type="image/svg+xml" href="assets/muzikbogs-wordmark.svg" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="alternate icon" type="image/png" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -85,9 +87,14 @@
             <span class="live-badge"><span class="pulse"></span> <span data-i18n="live.live">LIVE</span></span>
             <span class="live-clock" id="live-clock">00:00:00</span>
           </div>
-          <div class="live-art" aria-hidden="true">
-            <div class="vinyl"><div class="vinyl-label">МБ</div></div>
-            <div class="eq" id="hero-eq">
+          <div class="live-art">
+            <button class="vinyl" id="vinyl-btn" data-play-toggle data-i18n-aria="a11y.vinyl" aria-label="Включить эфир с пластинки">
+              <span class="vinyl-label">
+                <span class="vinyl-play" aria-hidden="true">▶</span>
+                <span class="vinyl-mb">МБ</span>
+              </span>
+            </button>
+            <div class="eq" id="hero-eq" aria-hidden="true">
               <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
             </div>
           </div>
@@ -183,7 +190,7 @@
       <div class="container video-inner">
         <div class="video-frame reveal">
           <iframe
-            src="https://www.youtube-nocookie.com/embed/11jEgN6SjG0?rel=0&modestbranding=1"
+            src="https://www.youtube-nocookie.com/embed/11jEgN6SjG0?rel=0&modestbranding=1&enablejsapi=1"
             title="Neon Lights — Dark Synthwave / МЮЗИКБОГС"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerpolicy="strict-origin-when-cross-origin"
@@ -195,6 +202,12 @@
           <h2 class="section-title" data-i18n-html="true" data-i18n="video.title">ВИД <span>СТУДИИ</span></h2>
           <p class="section-lead" data-i18n="video.lead">Неон, ночной город и звук, от которого хочется ехать дальше. Саундтрек нашего эфира — в одном кадре.</p>
           <p class="video-caption" data-i18n-html="true" data-i18n="video.caption">Neon Lights · Dark Synthwave — <a href="https://www.youtube.com/@WoolScapes" target="_blank" rel="noopener noreferrer">WoolScapes</a>, royalty-free. Видео подключено без автозапуска.</p>
+          <div class="video-volume">
+            <button class="video-vol-btn" id="video-mute" aria-label="Выключить звук видео" data-i18n-aria="a11y.videoMute"><span aria-hidden="true">◖))</span></button>
+            <input type="range" id="video-volume" min="0" max="100" step="1" value="70" aria-label="Громкость видео" data-i18n-aria="a11y.videoVolume" />
+            <span id="video-volume-value">70%</span>
+            <span class="video-vol-label" data-i18n="video.volume">ГРОМКОСТЬ ВИДЕО</span>
+          </div>
           <a class="btn btn--ghost" href="https://www.youtube.com/watch?v=11jEgN6SjG0" target="_blank" rel="noopener noreferrer">
             <span data-i18n="video.cta">СМОТРЕТЬ НА YOUTUBE</span> <span aria-hidden="true">↗</span>
           </a>
