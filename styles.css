@@ -887,6 +887,14 @@ html[data-theme="light"] .footer-col a { color: #4a3b56; }
 html[data-theme="light"] .stream-status.is-error { color: #b3123f; }
 html[data-theme="light"] .about-bottom p { color: #4a3b56; }
 html[data-theme="light"] .mini-list li { color: #4a3b56; }
+html[data-theme="light"] .tab.is-active,
+html[data-theme="light"] .filter.is-active {
+  color: var(--pink-soft);
+  background: rgba(201,24,130,.09);
+}
+html[data-theme="light"] .tab:hover,
+html[data-theme="light"] .filter:hover { color: var(--text); }
+html[data-theme="light"] .filter span { color: var(--pink-soft); }
 html[data-theme="light"] .founder { background: rgba(60,30,80,.03); }
 html[data-theme="light"] .founder-copy > p { color: #4a3b56; }
 
