@@ -43,6 +43,45 @@
   }
   refreshPalette();
 
+  function sampleClef() {
+    const c = document.createElement('canvas');
+    c.width = Math.max(1, width); c.height = Math.max(1, height);
+    const x = c.getContext('2d', { willReadFrequently: true });
+    if (!x) return [];
+    const size = Math.min(height * 1.35, width * 0.5);
+    x.font = `${size}px "Segoe UI Symbol", "Arial Unicode MS", serif`;
+    x.fillStyle = '#fff';
+    x.textAlign = 'center';
+    x.textBaseline = 'middle';
+    x.fillText('𝄞', width / 2, height / 2);
+    const data = x.getImageData(0, 0, c.width, c.height).data;
+    const points = [];
+    const step = Math.max(2, Math.floor(size / 80));
+    for (let y = 0; y < c.height; y += step) {
+      for (let px = 0; px < c.width; px += step) {
+        if (data[(y * c.width + px) * 4 + 3] > 40) points.push({ x: px, y });
+      }
+    }
+    return points;
+  }
+
+  function startFromClef() {
+    const clef = sampleClef();
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+      const pt = clef.length ? clef[(i * 7) % clef.length] : { x: p.tx, y: p.ty };
+      p.sx = pt.x + (((p.seed * 7919) % 1) - 0.5) * 5;
+      p.sy = pt.y + (((p.seed * 104729) % 1) - 0.5) * 5;
+      p.x = p.sx; p.y = p.sy;
+      p.delay = p.seed * 420;
+      p.ox = p.oy = p.vx = p.vy = 0;
+    }
+    gathering = true;
+    bursting = false;
+    gatherStart = performance.now();
+    wake();
+  }
+
   function build() {
     const rect = container.getBoundingClientRect();
     width = Math.max(1, Math.floor(rect.width));
@@ -88,22 +127,20 @@
       const seed = ((i * 9301 + 49297) % 233280) / 233280;
       const depth = 0.5 + seed * 0.7;
       const tone = Math.min(COLORS.length - 1, Math.floor((p.x / width) * COLORS.length));
-      const angle = seed * TAU;
-      const dist = reduced ? 0 : 110 * (0.35 + depth * 0.8);
-      const sx = p.x + Math.cos(angle) * dist;
-      const sy = p.y + Math.sin(angle) * dist;
       return {
-        x: p.x, y: p.y, tx: p.x, ty: p.y, sx, sy,
+        x: p.x, y: p.y, tx: p.x, ty: p.y, sx: p.x, sy: p.y,
         seed, depth, tone, delay: seed * 420,
         ox: 0, oy: 0, vx: 0, vy: 0
       };
     });
 
-    gathering = !reduced;
-    gatherStart = performance.now();
-    bursting = false;
-    if (reduced) particles.forEach(p => { p.x = p.tx; p.y = p.ty; });
-    else particles.forEach(p => { p.x = p.sx; p.y = p.sy; });
+    if (reduced) {
+      gathering = false;
+      bursting = false;
+      particles.forEach(p => { p.x = p.tx; p.y = p.ty; });
+    } else {
+      startFromClef();
+    }
 
     if (!pointer.active) {
       pointer.x = pointer.sx = width / 2;
@@ -216,21 +253,10 @@
     wake();
   });
   canvas.addEventListener('pointerleave', () => { pointer.active = false; wake(); });
-  canvas.addEventListener('pointerdown', e => {
+  canvas.addEventListener('pointerdown', () => {
     if (reduced) return;
-    locate(e);
-    for (const p of particles) {
-      const dx = p.x - pointer.x, dy = p.y - pointer.y;
-      const d = Math.hypot(dx, dy);
-      if (d > 0 && d < 130) {
-        const power = (1 - d / 130) * 700;
-        const a = Math.atan2(dy, dx) + (p.seed - 0.5) * 0.7;
-        p.vx += Math.cos(a) * power;
-        p.vy += Math.sin(a) * power;
-      }
-    }
-    bursting = true;
-    wake();
+    // частицы рассыпаются в скрипичный ключ и снова собираются в слово
+    startFromClef();
   });
 
   const resizeObserver = new ResizeObserver(queueBuild);

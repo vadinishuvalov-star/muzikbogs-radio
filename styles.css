@@ -254,7 +254,13 @@ html[lang="ru"] .lang-ru, html[lang="en"] .lang-en { color: var(--pink); font-we
   filter: drop-shadow(0 0 28px rgba(255, 46, 166, 0.28));
 }
 .particle-text { position: relative; width: 100%; height: clamp(96px, 13vw, 168px); }
-.particle-text canvas {
+.particle-text::before {
+  content: "𝄞"; position: absolute; left: 50%; top: 50%; z-index: 0;
+  transform: translate(-50%, -52%);
+  font: 190px/1 "Segoe UI Symbol", "Arial Unicode MS", serif;
+  color: var(--cyan); opacity: .07; pointer-events: none;
+}
+.particle-text canvas { position: relative; z-index: 1; }
   display: block; width: 100%; height: 100%; cursor: crosshair;
   filter: drop-shadow(0 0 10px rgba(255,46,166,.42)) drop-shadow(0 0 24px rgba(92,234,255,.2));
 }
@@ -1031,6 +1037,7 @@ html[data-theme="light"] .founder-copy > p { color: #4a3b56; }
   .eq-foot { gap: 8px; flex-wrap: wrap; }
   .eq-foot span { margin-left: 0; width: 100%; }
   .founder { flex-direction: column; text-align: center; gap: 16px; }
+  .particle-text::before { font-size: 120px; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
