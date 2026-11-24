@@ -753,7 +753,8 @@ html[lang="ru"] .lang-ru, html[lang="en"] .lang-en { color: var(--pink); font-we
 }
 .eq-band-hz { font-family: "Oswald", "Arial Narrow", sans-serif; font-size: 10px; color: var(--muted); }
 .eq-slider { writing-mode: vertical-lr; direction: rtl; width: 20px; height: 110px; accent-color: var(--pink); cursor: pointer; }
-.eq-foot { display: flex; align-items: center; gap: 16px; margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); font-family: "Oswald", "Arial Narrow", sans-serif; font-size: 11px; letter-spacing: .12em; }
+.eq-note { margin: 16px 0 0; font-size: 10px; color: var(--muted); opacity: .8; }
+.eq-foot { display: flex; align-items: center; gap: 16px; margin-top: 12px; padding-top: 16px; border-top: 1px solid var(--line); font-family: "Oswald", "Arial Narrow", sans-serif; font-size: 11px; letter-spacing: .12em; }
 .eq-foot label { color: var(--muted); display: flex; align-items: center; gap: 8px; }
 .eq-foot select, .eq-foot button { background: rgba(255,255,255,.04); color: var(--text); border: 1px solid var(--line); padding: 7px 10px; font-family: "Oswald", "Arial Narrow", sans-serif; font-size: 11px; letter-spacing: .1em; }
 .eq-foot select { color-scheme: dark; }

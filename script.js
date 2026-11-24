@@ -21,14 +21,15 @@
       'a11y.videoVolume': 'Громкость видео',
       'a11y.videoMute': 'Выключить звук видео',
       'a11y.videoUnmute': 'Включить звук видео',
-      'stream.idle': 'ОРИГИНАЛЬНЫЙ ДЕМО-СИГНАЛ · НАЖМИТЕ «СЛУШАТЬ»',
+      'stream.idle': 'ВИДЕО · NEON LIGHTS · НАЖМИТЕ «СЛУШАТЬ»',
       'stream.connecting': 'ПОДГОТОВКА ЗВУКА…',
       'stream.buffering': 'БУФЕРИЗАЦИЯ…',
-      'stream.live': 'ЭФИР · ОРИГИНАЛЬНЫЙ ДЕМО-СИГНАЛ',
+      'stream.live': 'ЗВУК ИЗ ВИДЕО · NEON LIGHTS · WOOLSCAPES',
       'stream.error': 'ЗВУК НЕДОСТУПЕН · ПОВТОРИТЕ',
       'eq.open': 'ОТКРЫТЬ ЭКВАЛАЙЗЕР · 10 ПОЛОС',
       'eq.title': 'ЭКВАЛАЙЗЕР',
       'eq.preset': 'ПРЕСЕТ',
+      'eq.note': 'Эквалайзер визуален: звук идёт из YouTube-видео, браузер не передаёт его в Web Audio.',
       'eq.custom': 'CUSTOM', 'eq.flat': 'FLAT', 'eq.rock': 'РОК', 'eq.jazz': 'ДЖАЗ',
       'eq.vocal': 'ВОКАЛ', 'eq.night': 'НОЧЬ', 'eq.bass': 'БАС',
       'a11y.themeLight': 'Включить светлую тему',
@@ -46,7 +47,7 @@
       'hero.meta1': 'в эфире', 'hero.meta2': 'рубрик', 'hero.meta3': 'звук',
       'play.listen': 'СЛУШАТЬ', 'play.start': 'ВКЛЮЧИТЬ ЭФИР',
       'play.pause': 'ПАУЗА', 'play.card': 'СЛУШАТЬ ЭФИР',
-      'live.live': 'LIVE', 'live.now': 'СЕЙЧАС ИГРАЕТ', 'live.bitrate': 'LIVE · 128 KBPS',
+      'live.live': 'LIVE', 'live.now': 'СЕЙЧАС ИГРАЕТ', 'live.bitrate': 'LIVE · ВИДЕОАУДИО',
       'live.spec': '33⅓ RPM · STEREO · CURATED',
       'live.next': 'ДАЛЕЕ', 'live.nextValue': 'Лекторий · 11:00',
       'scroll.hint': 'ЛИСТАЙ',
@@ -126,14 +127,15 @@
       'a11y.videoVolume': 'Video volume',
       'a11y.videoMute': 'Mute video',
       'a11y.videoUnmute': 'Unmute video',
-      'stream.idle': 'ORIGINAL DEMO SIGNAL · PRESS “LISTEN”',
+      'stream.idle': 'VIDEO AUDIO · NEON LIGHTS · PRESS “LISTEN”',
       'stream.connecting': 'PREPARING AUDIO…',
       'stream.buffering': 'BUFFERING…',
-      'stream.live': 'ON AIR · ORIGINAL DEMO SIGNAL',
+      'stream.live': 'VIDEO AUDIO · NEON LIGHTS · WOOLSCAPES',
       'stream.error': 'AUDIO UNAVAILABLE · TRY AGAIN',
       'eq.open': 'OPEN EQUALIZER · 10 BANDS',
       'eq.title': 'EQUALIZER',
       'eq.preset': 'PRESET',
+      'eq.note': 'The EQ is visual: audio comes from the YouTube video and browsers don’t route it through Web Audio.',
       'eq.custom': 'CUSTOM', 'eq.flat': 'FLAT', 'eq.rock': 'ROCK', 'eq.jazz': 'JAZZ',
       'eq.vocal': 'VOCAL', 'eq.night': 'NIGHT', 'eq.bass': 'BASS',
       'a11y.themeLight': 'Switch to light theme',
@@ -151,7 +153,7 @@
       'hero.meta1': 'on air', 'hero.meta2': 'columns', 'hero.meta3': 'sound',
       'play.listen': 'LISTEN', 'play.start': 'START STREAM',
       'play.pause': 'PAUSE', 'play.card': 'LISTEN LIVE',
-      'live.live': 'LIVE', 'live.now': 'NOW PLAYING', 'live.bitrate': 'LIVE · 128 KBPS',
+      'live.live': 'LIVE', 'live.now': 'NOW PLAYING', 'live.bitrate': 'LIVE · VIDEO AUDIO',
       'live.spec': '33⅓ RPM · STEREO · CURATED',
       'live.next': 'UP NEXT', 'live.nextValue': 'Lecture Hall · 11:00',
       'scroll.hint': 'SCROLL',
@@ -280,11 +282,9 @@
   let currentDay = 'weekday';
   let activeFilter = 'all';
   let isPlaying = false;
-  let trackIndex = 0;
   let listenSeconds = 0;
   let timer = null;
-  let metaTimer = null;
-  let lastSongKey = '';
+  let muted = false;
 
   const t = key => i18n[lang][key] || i18n.ru[key] || key;
 
@@ -387,10 +387,9 @@
     document.getElementById('lang-btn').setAttribute('aria-label', lang === 'ru' ? 'Switch to English' : 'Переключить на русский');
     renderCards();
     renderSchedule(currentDay);
-    setTrack(trackIndex, false);
+    setTrack();
     if (ctx && !eqPanel.hidden) { const prev = eqPreset.value; buildPresetOptions(); eqPreset.value = prev || 'flat'; }
     setMuted(muted);
-    if (typeof updateVideoMuteUI === 'function') updateVideoMuteUI();
     setStatus(isPlaying ? 'live' : (streamState === 'error' ? 'error' : 'idle'));
     updatePlayerLabels();
     applyTheme();
@@ -421,12 +420,8 @@
     applyTheme();
   });
 
-  /* ---------- Плеер: оригинальный демо-сигнал + Web Audio EQ ---------- */
-  const AUDIO_SRC = 'assets/muzikbogs-air.wav';
-  const audio = document.getElementById('stream-audio');
-  audio.src = AUDIO_SRC;
-  audio.loop = true;
-  audio.volume = 1;
+  /* ---------- Плеер: звук из видео через YouTube IFrame API ---------- */
+  const VIDEO_DURATION = 214;
 
   const progressFill = document.getElementById('progress-fill');
   const nowTime = document.getElementById('now-time');
@@ -443,7 +438,6 @@
   const volumeHero = document.getElementById('hero-volume');
   const muteBtn = document.getElementById('mute-btn');
   let streamState = 'idle';
-  let muted = false;
 
   function setStatus(state) {
     streamState = state;
@@ -461,25 +455,24 @@
     triadArtist.textContent = artist;
   }
 
-  function setTrack(index, reset = true) {
-    trackIndex = index % tracks.length;
-    const data = tracks[trackIndex][lang];
+  function setTrack() {
+    const data = lang === 'ru'
+      ? { title: 'Неоновый свет', artist: 'WoolScapes · МЮЗИКБОГС' }
+      : { title: 'Neon Lights', artist: 'WoolScapes · МЮЗИКБОГС' };
     displaySong(data.title, data.artist);
-    if (reset) listenSeconds = 0;
+    listenSeconds = 0;
     updateProgress();
   }
 
   const fmt = s => `${String(Math.floor((s || 0) / 60)).padStart(2, '0')}:${String(Math.floor((s || 0) % 60)).padStart(2, '0')}`;
   function updateProgress() {
-    const duration = audio.duration || 40;
-    const ratio = audio.currentTime ? Math.min(100, (audio.currentTime / duration) * 100) : 0;
-    nowTime.textContent = fmt(audio.currentTime);
-    triadTime.textContent = `${fmt(audio.currentTime)} / ${fmt(duration)}`;
+    const elapsed = listenSeconds % VIDEO_DURATION;
+    const ratio = (elapsed / VIDEO_DURATION) * 100;
+    nowTime.textContent = fmt(elapsed);
+    triadTime.textContent = `${fmt(elapsed)} / ${fmt(VIDEO_DURATION)}`;
     progressFill.style.width = isPlaying ? `${ratio}%` : '0%';
     triadProgress.style.width = isPlaying ? `${ratio}%` : '0%';
   }
-  audio.addEventListener('timeupdate', updateProgress);
-  audio.addEventListener('loadedmetadata', updateProgress);
 
   function updatePlayerLabels() {
     document.body.classList.toggle('is-playing', isPlaying);
@@ -508,7 +501,6 @@
     const AudioCtx = window.AudioContext || window.webkitAudioContext;
     if (!AudioCtx) return;
     ctx = new AudioCtx();
-    const source = ctx.createMediaElementSource(audio);
     gainNode = ctx.createGain();
     gainNode.gain.value = muted ? 0 : parseFloat(volumeMini.value);
     filters = EQ_FREQS.map((f, i) => {
@@ -523,8 +515,7 @@
     analyser.fftSize = 2048;
     analyser.smoothingTimeConstant = 0.8;
     freqData = new Uint8Array(analyser.frequencyBinCount);
-    let node = source;
-    node.connect(gainNode); node = gainNode;
+    let node = gainNode;
     filters.forEach(f => { node.connect(f); node = f; });
     node.connect(analyser);
     analyser.connect(ctx.destination);
@@ -534,15 +525,24 @@
   function setVolume(value) {
     const v = parseFloat(value);
     volumeMini.value = volumeHero.value = String(v);
-    if (gainNode) gainNode.gain.setTargetAtTime(muted ? 0 : v, ctx.currentTime, 0.02);
-    audio.volume = 1;
+    const videoVol = document.getElementById('video-volume');
+    if (videoVol) videoVol.value = String(Math.round(v * 100));
+    const videoVolValue = document.getElementById('video-volume-value');
+    if (videoVolValue) videoVolValue.textContent = `${Math.round(v * 100)}%`;
+    videoCommand('setVolume', [Math.round(v * 100)]);
+    if (muted && v > 0) setMuted(false);
   }
 
   function setMuted(value) {
     muted = value;
-    if (gainNode) gainNode.gain.setTargetAtTime(muted ? 0 : parseFloat(volumeMini.value), ctx.currentTime, 0.02);
+    videoCommand(muted ? 'mute' : 'unMute');
     muteBtn.querySelector('span').textContent = muted ? '◖×' : '◖))';
     muteBtn.setAttribute('aria-label', muted ? t('a11y.unmute') : t('a11y.mute'));
+    const vm = document.getElementById('video-mute');
+    if (vm) {
+      vm.querySelector('span').textContent = muted ? '◖×' : '◖))';
+      vm.setAttribute('aria-label', muted ? t('a11y.videoUnmute') : t('a11y.videoMute'));
+    }
   }
 
   const eqPanel = document.getElementById('eq-panel');
@@ -603,6 +603,8 @@
     g.lineWidth = 1;
     for (let i = 1; i < 5; i++) { const y = (h / 5) * i; g.beginPath(); g.moveTo(0, y); g.lineTo(w, y); g.stroke(); }
     analyser.getByteFrequencyData(freqData);
+    const hasSignal = freqData.some(v => v > 0);
+    const time = performance.now() * 0.001;
     const bars = 64;
     const bw = w / bars;
     const grad = g.createLinearGradient(0, h, 0, 0);
@@ -611,8 +613,10 @@
     grad.addColorStop(1, '#5ceaff');
     for (let i = 0; i < bars; i++) {
       const bin = Math.floor(Math.pow((i + 1) / bars, 1.7) * (freqData.length * 0.65));
-      const val = freqData[bin] / 255;
-      const bh = Math.max(2, val * (h - 16));
+      const val = hasSignal
+        ? freqData[bin] / 255
+        : 0.24 + 0.18 * Math.sin(time * 2.1 + i * 0.34) + 0.12 * Math.sin(time * 0.8 + i * 0.12);
+      const bh = Math.max(2, Math.min(1, val) * (h - 16));
       const x = i * bw + 1;
       g.fillStyle = grad;
       g.fillRect(x, h - bh, bw - 2, bh);
@@ -640,34 +644,30 @@
   eqPreset.addEventListener('change', e => applyPreset(e.target.value));
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && !eqPanel.hidden) closeEq(); });
 
-  async function setPlaying(value) {
+  function startTimer() {
+    timer = setInterval(() => { listenSeconds++; updateProgress(); }, 1000);
+  }
+
+  function setPlaying(value) {
     if (value === isPlaying) return;
     if (!value) {
-      audio.pause();
-      audio.currentTime = 0;
+      videoCommand('pauseVideo');
       isPlaying = false;
-      if (ctx && ctx.state === 'running') ctx.suspend();
       clearInterval(timer); timer = null;
       setStatus('idle');
       updatePlayerLabels();
       return;
     }
-    try {
-      initAudioGraph();
-      if (ctx && ctx.state === 'suspended') await ctx.resume();
-      await audio.play();
-      isPlaying = true;
-      setStatus('live');
-      updatePlayerLabels();
-    } catch (_) {
-      isPlaying = false;
-      setStatus('error');
-      updatePlayerLabels();
-    }
+    videoCommand('playVideo');
+    if (muted) setMuted(false);
+    isPlaying = true;
+    listenSeconds = 0;
+    if (!timer) startTimer();
+    setStatus('live');
+    updatePlayerLabels();
   }
 
   document.querySelectorAll('[data-play-toggle]').forEach(btn => btn.addEventListener('click', () => setPlaying(!isPlaying)));
-  audio.addEventListener('error', () => { if (isPlaying) { setPlaying(false); setStatus('error'); } });
 
   const clock = document.getElementById('live-clock');
   function updateClock() {
@@ -691,8 +691,6 @@
   const videoFrame = document.querySelector('.video-frame iframe');
   const videoVol = document.getElementById('video-volume');
   const videoMuteBtn = document.getElementById('video-mute');
-  const videoVolValue = document.getElementById('video-volume-value');
-  let videoMuted = false;
 
   function videoCommand(func, args = []) {
     try {
@@ -702,25 +700,12 @@
       );
     } catch (_) { /* плеер ещё не готов */ }
   }
-  function updateVideoMuteUI() {
-    videoMuteBtn.querySelector('span').textContent = videoMuted ? '◖×' : '◖))';
-    videoMuteBtn.setAttribute('aria-label', videoMuted ? t('a11y.videoUnmute') : t('a11y.videoMute'));
-  }
-  videoVol.addEventListener('input', e => {
-    const v = parseInt(e.target.value, 10);
-    videoVolValue.textContent = `${v}%`;
-    videoCommand('setVolume', [v]);
-    if (v > 0 && videoMuted) { videoMuted = false; videoCommand('unMute'); updateVideoMuteUI(); }
-  });
-  videoMuteBtn.addEventListener('click', () => {
-    videoMuted = !videoMuted;
-    videoCommand(videoMuted ? 'mute' : 'unMute');
-    updateVideoMuteUI();
-  });
+  videoVol.addEventListener('input', e => { setVolume(parseInt(e.target.value, 10) / 100); });
+  videoMuteBtn.addEventListener('click', () => { setMuted(!muted); });
   videoFrame.addEventListener('load', () => {
     setTimeout(() => {
-      videoCommand('setVolume', [parseInt(videoVol.value, 10)]);
-      if (videoMuted) videoCommand('mute');
+      videoCommand('setVolume', [Math.round(parseFloat(volumeMini.value) * 100)]);
+      if (muted) videoCommand('mute');
     }, 1400);
   });
 
