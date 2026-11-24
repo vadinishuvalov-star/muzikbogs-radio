@@ -716,6 +716,27 @@ html[lang="ru"] .lang-ru, html[lang="en"] .lang-en { color: var(--pink); font-we
 .eq-foot button { color: var(--cyan); cursor: pointer; }
 .eq-foot span { margin-left: auto; color: var(--pink); }
 
+/* --- Аккуратные текстуры --- */
+.card-art::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image: radial-gradient(rgba(255,255,255,.24) .6px, transparent .6px);
+  background-size: 7px 7px; opacity: .35;
+}
+.live-art::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image: repeating-linear-gradient(90deg, transparent 0 3px, rgba(255,255,255,.018) 3px 4px);
+}
+.community-card::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  background-image: radial-gradient(rgba(92,234,255,.1) 1px, transparent 1px);
+  background-size: 12px 12px; opacity: .8;
+}
+.founder-photo::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 2;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: .09; mix-blend-mode: overlay;
+}
+
 /* --- Magic Bento: мягкий свет и волна по клику --- */
 .magic-surface { position: relative; overflow: hidden; isolation: isolate; }
 .magic-surface > .magic-fx ~ *,
@@ -788,8 +809,8 @@ html[data-theme="light"] {
   --panel: rgba(255,255,255,.9);
   --pink: #c91882;
   --pink-soft: #a30f6b;
-  --cyan: #007fa6;
-  --cyan-soft: #005f80;
+  --cyan: #006b8c;
+  --cyan-soft: #004f6b;
   --text: #1b1026;
   --muted: #6a5c78;
   --line: rgba(38,18,56,.16);
@@ -837,6 +858,8 @@ html[data-theme="light"] .card-art {
     linear-gradient(115deg, rgba(201,24,130,.16), rgba(0,127,166,.09) 60%, transparent),
     repeating-linear-gradient(90deg, transparent 0 18px, rgba(40,20,60,.045) 18px 19px);
 }
+html[data-theme="light"] .card-num { color: rgba(163,15,107,.72); text-shadow: none; }
+html[data-theme="light"] .card[data-type="text"] .card-num { color: rgba(0,90,120,.72); }
 html[data-theme="light"] .card[data-type="text"] .card-art {
   background:
     linear-gradient(115deg, rgba(0,127,166,.15), rgba(201,24,130,.08) 65%, transparent),
