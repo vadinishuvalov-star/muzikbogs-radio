@@ -64,7 +64,10 @@
         <div class="hero-copy">
           <div class="eyebrow"><span class="dot-live"></span> <span data-i18n="hero.eyebrow">ПРЯМОЙ ЭФИР · БЕРЛИН / ИНТЕРНЕТ</span></div>
           <h1 class="hero-title">
-            <img src="assets/muzikbogs-wordmark.svg" alt="МЮЗИКБОГС" class="hero-logo" />
+            <div class="particle-text" id="particle-text">
+              <canvas id="particle-canvas" aria-hidden="true"></canvas>
+              <span class="particle-sr">МЮЗИКБОГС</span>
+            </div>
           </h1>
           <p class="hero-tagline" data-i18n-html="true" data-i18n="hero.tagline">МУЗЫКА <span>БОГОВ</span><br />для тех, кто слушает внимательно</p>
           <p class="hero-desc" data-i18n="hero.desc">Неон, винил и хороший шум. Авторские миксы, разговоры о музыке и всё, что между ними — круглосуточно.</p>
@@ -343,6 +346,7 @@
 
   <audio id="stream-audio" preload="none" loop></audio>
 
+  <script src="particle-text.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

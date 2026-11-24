@@ -687,6 +687,13 @@
     menuBtn.setAttribute('aria-expanded', 'false');
   }));
 
+  /* Логотип слева всегда возвращает в начало */
+  document.querySelector('.brand').addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    history.replaceState(null, '', location.pathname + location.search + '#top');
+  });
+
   const form = document.getElementById('subscribe-form');
   const note = document.getElementById('form-note');
   form.addEventListener('submit', (e) => {

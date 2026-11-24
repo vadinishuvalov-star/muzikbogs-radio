@@ -245,6 +245,15 @@ html[lang="ru"] .lang-ru, html[lang="en"] .lang-en { color: var(--pink); font-we
   width: min(100%, 670px);
   filter: drop-shadow(0 0 28px rgba(255, 46, 166, 0.28));
 }
+.particle-text { position: relative; width: 100%; height: clamp(96px, 13vw, 168px); }
+.particle-text canvas {
+  display: block; width: 100%; height: 100%; cursor: crosshair;
+  filter: drop-shadow(0 0 10px rgba(255,46,166,.42)) drop-shadow(0 0 24px rgba(92,234,255,.2));
+}
+.particle-sr {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
 .hero-tagline {
   font-family: "Oswald", "Arial Narrow", sans-serif;
   font-size: clamp(26px, 3.2vw, 44px);
@@ -713,6 +722,7 @@ html[data-theme="light"] .hero {
 html[data-theme="light"] .hero::after { background: radial-gradient(ellipse at center, transparent 45%, rgba(90,50,110,.13)); }
 html[data-theme="light"] .hero-glow { opacity: .45; }
 html[data-theme="light"] .hero-logo { filter: drop-shadow(0 0 18px rgba(201,24,130,.26)); }
+html[data-theme="light"] .particle-text canvas { filter: drop-shadow(0 0 8px rgba(201,24,130,.3)) drop-shadow(0 0 16px rgba(0,127,166,.15)); }
 html[data-theme="light"] .hero-tagline span { text-shadow: 0 0 22px rgba(201,24,130,.28); }
 html[data-theme="light"] .wall {
   opacity: .38;
