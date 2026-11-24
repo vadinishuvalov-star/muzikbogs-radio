@@ -268,7 +268,7 @@
   };
 
   const tracks = [
-    { ru: { title: 'Тихий неон', artist: 'МЮЗИКБОГС · Ночной микс' }, en: { title: 'Silent Neon', artist: 'МЮЗИКБОГС · Night Mix' } },
+    { ru: { title: 'Неоновый протокол', artist: 'МЮЗИКБОГС · Оригинальный саунд' }, en: { title: 'Neon Protocol', artist: 'МЮЗИКБОГС · Original Sound' } },
     { ru: { title: 'Стеклянный город', artist: 'МЮЗИКБОГС · Энциклопедия' }, en: { title: 'Glass City', artist: 'МЮЗИКБОГС · Encyclopedia' } },
     { ru: { title: 'После полуночи', artist: 'МЮЗИКБОГС · Топ-10' }, en: { title: 'After Midnight', artist: 'МЮЗИКБОГС · Top 10' } },
     { ru: { title: 'Сигнал из Берлина', artist: 'МЮЗИКБОГС · Прямой эфир' }, en: { title: 'Signal from Berlin', artist: 'МЮЗИКБОГС · Live' } }
